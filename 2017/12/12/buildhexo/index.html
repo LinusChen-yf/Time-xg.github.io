@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://i.imgur.com/5zZ0Lxd.png">
 <meta property="og:image" content="https://i.imgur.com/0gbxYDn.png">
 <meta property="og:image" content="https://i.imgur.com/2LrdUMc.png">
-<meta property="og:updated_time" content="2017-12-12T15:32:59.992Z">
+<meta property="og:updated_time" content="2017-12-13T16:17:56.833Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用GitHub建立个人博客">
 <meta name="twitter:description" content="感谢小茗同学的博文以及β-house学长的帮助 ###  参考链接  https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html 第一步准备工作  注册你的GitHub账号  下载git以及安装    链接 https://git-scm.com/downloads">
@@ -194,8 +194,8 @@
 <p>  就部署到你的GitHub上了<br>  这个时候就可以输入你的域名访问了 Time-xg.github.io   (Time-xg是你GitHub的用户名)</p>
 <h2 id="绑定你个人域名"><a href="#绑定你个人域名" class="headerlink" title="绑定你个人域名"></a>绑定你个人域名</h2><p>  对这个GitHub给的这个域名不满意？  当然可以进行修改啊！<br>  进入你GitHub博客的库 –&gt; setting –&gt; 添加你的域名<br>  如图  <img src="https://i.imgur.com/0gbxYDn.png" alt=""><br>  然后这时候就开始解析域名了，打开你的域名面板进行解析<br>  解析CNAME记录主机值为www  ,记录值为GitHub给你域名<br>  后面我尝试用CNAME解析@ 不过好像跟mail那些有冲突解析不了 就把@的主机记录用A记录解析了<br>  如图<img src="https://i.imgur.com/2LrdUMc.png" alt=""></p>
 <p>  这个时候就ok了 略等几分钟就可以访问你的域名<br>  但是我发现了个问题 ，每次部署博客时GitHub上的CNAME文件就自动没掉。感谢β-house学长为我解决问题。 将你的CNAME文件反正博客文件中的source目录下，每次部署的时候会自动生成CNAME。如果不行的话把public文件删除，hexo g 重新生成</p>
-<h2 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">生成文章页面</span><br><span class="line">hexo new  &quot;文章标题&quot;</span><br></pre></td></tr></table></figure>
-<p>  如果想要文章在主页显示一部分 在其中添加代码 <!--more--></p>
+<h2 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">生成文章页面</span><br><span class="line">hexo new  &quot;文章标题&quot;</span><br><span class="line">或者是</span><br><span class="line">hexo new page &quot;文章标题&quot;</span><br></pre></td></tr></table></figure>
+<p>  这两个命令的差别就是第二个命令index.html的文件，但是不会显示在博客主页<br>  然后你就可以打开创建出的文件尽情写你的文章了 我是用markdown写的<br>  如果想要文章在主页显示一部分 在其中添加代码 <!--more--></p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>  如有发现看不明白亦或者是文章中有错误的地方，希望大家联系我！<br>  允许转载  转载注明出处<br>  谢谢各位大佬！     By Time QQ 554621730</p>
 
       
