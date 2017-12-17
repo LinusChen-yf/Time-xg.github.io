@@ -4,27 +4,8 @@
 
     
   <url>
-    <loc>http://www.timewl.top/2017/12/17/array1217/</loc>
-    <lastmod>2017-12-16T18:04:51.563Z</lastmod>
-    <data>
-        <display>
-        <title>Java中的数组</title>
-        <pubTime>2017-12-16T17:38:58.000Z</pubTime>
-        
-        <tag>JAVA</tag>
-         
-        <tag>数组</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.timewl.top/2017/12/15/synchronized1215/</loc>
-    <lastmod>2017-12-14T16:45:25.308Z</lastmod>
+    <lastmod>2017-12-17T13:28:17.549Z</lastmod>
     <data>
         <display>
         <title>JAVA深入同步synchronized</title>
@@ -44,8 +25,27 @@
 
     
   <url>
+    <loc>http://www.timewl.top/2017/12/17/array1217/</loc>
+    <lastmod>2017-12-17T13:27:47.239Z</lastmod>
+    <data>
+        <display>
+        <title>Java中的数组</title>
+        <pubTime>2017-12-16T17:38:58.000Z</pubTime>
+        
+        <tag>JAVA</tag>
+         
+        <tag>数组</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.timewl.top/2017/12/14/javaIO1214/</loc>
-    <lastmod>2017-12-14T05:04:43.344Z</lastmod>
+    <lastmod>2017-12-17T13:27:36.899Z</lastmod>
     <data>
         <display>
         <title>java快速IO</title>
@@ -64,7 +64,7 @@
     
   <url>
     <loc>http://www.timewl.top/2017/12/12/buildhexo/</loc>
-    <lastmod>2017-12-13T16:17:56.833Z</lastmod>
+    <lastmod>2017-12-17T13:21:32.367Z</lastmod>
     <data>
         <display>
         <title>用GitHub建立个人博客</title>
