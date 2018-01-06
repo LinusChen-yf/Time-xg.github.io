@@ -9,20 +9,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.timewl.top">
-  <title>intent跳转Activity以及传递数据 | Time Blog</title>
+  <title>Archives: 2018 | Time Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="用Intent跳转Activity我们可以创建一个监听器，在监听器中创建一个Intent来跳转Activity和传输数据，用startActivity()来跳转到另一个Activity，再将一个控件创建一个点击事件来达到跳转Activity的效果。">
-<meta name="keywords" content="Android,Activity,intent">
-<meta property="og:type" content="article">
-<meta property="og:title" content="intent跳转Activity以及传递数据">
-<meta property="og:url" content="http://www.timewl.top/2017/12/28/intent1228/index.html">
+  <meta name="description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
+<meta name="keywords" content="Time Blog,时光博客,JAVA,Pyhon,HTML,开发,编程,生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Time Blog">
+<meta property="og:url" content="http://www.timewl.top/archives/2018/index.html">
 <meta property="og:site_name" content="Time Blog">
-<meta property="og:description" content="用Intent跳转Activity我们可以创建一个监听器，在监听器中创建一个Intent来跳转Activity和传输数据，用startActivity()来跳转到另一个Activity，再将一个控件创建一个点击事件来达到跳转Activity的效果。">
+<meta property="og:description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2017-12-28T12:15:26.582Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="intent跳转Activity以及传递数据">
-<meta name="twitter:description" content="用Intent跳转Activity我们可以创建一个监听器，在监听器中创建一个Intent来跳转Activity和传输数据，用startActivity()来跳转到另一个Activity，再将一个控件创建一个点击事件来达到跳转Activity的效果。">
+<meta name="twitter:title" content="Time Blog">
+<meta name="twitter:description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
   
     <link rel="alternative" href="/atom.xml" title="Time Blog" type="application/atom+xml">
   
@@ -152,39 +151,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-intent1228" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      intent跳转Activity以及传递数据
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/01/06/RelativeLayout0106/" class="archive-article-date">
+  	<time datetime="2018-01-06T13:26:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-06</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/01/06/RelativeLayout0106/">Android中RelativeLayout布局</a>
     </h1>
   
 
-        
-        <a href="/2017/12/28/intent1228/" class="archive-article-date">
-  	<time datetime="2017-12-28T11:53:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="用Intent跳转Activity"><a href="#用Intent跳转Activity" class="headerlink" title="用Intent跳转Activity"></a>用Intent跳转Activity</h2><p>我们可以创建一个监听器，在监听器中创建一个Intent来跳转Activity和传输数据，用startActivity()来跳转到另一个Activity，再将一个控件创建一个点击事件来达到跳转Activity的效果。</p>
-<a id="more"></a>
-<h2 id="用Intent传输数据"><a href="#用Intent传输数据" class="headerlink" title="用Intent传输数据"></a>用Intent传输数据</h2><p>类似与跳转Activity，不过是用putExtra()来存储数据，用getStringExtra()来提取数据</p>
-<h2 id="演示代码"><a href="#演示代码" class="headerlink" title="演示代码"></a>演示代码</h2><p>下面为上面两种Intent用法的演示代码：<br>MainActivity:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    //加载布局</span><br><span class="line">    setContentView(R.layout.mainlayout);</span><br><span class="line">    //寻找组件</span><br><span class="line">    </span><br><span class="line">    TextView t1 = (TextView)findViewById(R.id.textView3);</span><br><span class="line">    </span><br><span class="line">    Button button = (Button)findViewById(R.id.button);</span><br><span class="line"></span><br><span class="line">    //添加点击事件</span><br><span class="line">    button.setOnClickListener(new MyListener());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MyListener implements View.OnClickListener&#123;</span><br><span class="line">    @Override</span><br><span class="line">    //复写点击方法</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        //取值</span><br><span class="line">        String s1 = e1.getText().toString();</span><br><span class="line">        String s2 = e2.getText().toString();</span><br><span class="line">        //创建intent对象</span><br><span class="line">        Intent intent = new Intent();</span><br><span class="line">        //设置键值对</span><br><span class="line">        intent.putExtra(&quot;one&quot;,s1);</span><br><span class="line">        intent.putExtra(&quot;two&quot;,s2);</span><br><span class="line"></span><br><span class="line">        //设置跳转的activity</span><br><span class="line">        intent.setClass(getApplicationContext(),OtherActivity.class);</span><br><span class="line">        //启动activity</span><br><span class="line">        startActivity(intent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>OtherActivity:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class MyListener implements View.OnClickListener&#123;</span><br><span class="line">    @Override</span><br><span class="line">    //复写点击方法</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        //取值</span><br><span class="line">        String s1 = e1.getText().toString();</span><br><span class="line">        String s2 = e2.getText().toString();</span><br><span class="line">        //创建intent对象</span><br><span class="line">        Intent intent = new Intent();</span><br><span class="line">        //设置键值对</span><br><span class="line">        intent.putExtra(&quot;one&quot;,s1);</span><br><span class="line">        intent.putExtra(&quot;two&quot;,s2);</span><br><span class="line"></span><br><span class="line">        //设置跳转的activity</span><br><span class="line">        intent.setClass(getApplicationContext(),OtherActivity.class);</span><br><span class="line">        //启动activity</span><br><span class="line">        startActivity(intent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -194,125 +190,25 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Activity</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">intent</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Layout</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.timewl.top/2017/12/28/intent1228/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/12/30/menu1230/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Android中菜单控件
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/12/26/intent1226/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Android中Intent的使用</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -335,8 +231,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
