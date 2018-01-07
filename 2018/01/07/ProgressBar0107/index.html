@@ -11,18 +11,18 @@
   <link rel="dns-prefetch" href="http://www.timewl.top">
   <title>Android中的进度条控件 | Time Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="进度条分为两种一种是圆形旋转的进度，另一种是直线进度条（可以设置第二进度）进度条的一些方法：123setVisibility(View.VISIBLE);//设置进度条是否可见View.VISIBLE为可见，View.GONE不可见setProgress(i);//设置进度条进度setSecondaryProgress(i + 10);//设置第二进度条进度">
+  <meta name="description" content="进度条分为两种一种是圆形旋转的进度，另一种是直线进度条（可以设置第二进度）进度条的一些方法：123setVisibility(View.VISIBLE);//设置进度条是否可见View.VISIBLE为可见，View.GONE不可见setProgress(i);//设置进度条进度setSecondaryProgress(i + 10);//设置第二进度条进度（圆形进度条不可设置）">
 <meta name="keywords" content="Android,控件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android中的进度条控件">
 <meta property="og:url" content="http://www.timewl.top/2018/01/07/ProgressBar0107/index.html">
 <meta property="og:site_name" content="Time Blog">
-<meta property="og:description" content="进度条分为两种一种是圆形旋转的进度，另一种是直线进度条（可以设置第二进度）进度条的一些方法：123setVisibility(View.VISIBLE);//设置进度条是否可见View.VISIBLE为可见，View.GONE不可见setProgress(i);//设置进度条进度setSecondaryProgress(i + 10);//设置第二进度条进度">
+<meta property="og:description" content="进度条分为两种一种是圆形旋转的进度，另一种是直线进度条（可以设置第二进度）进度条的一些方法：123setVisibility(View.VISIBLE);//设置进度条是否可见View.VISIBLE为可见，View.GONE不可见setProgress(i);//设置进度条进度setSecondaryProgress(i + 10);//设置第二进度条进度（圆形进度条不可设置）">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2018-01-07T13:38:37.675Z">
+<meta property="og:updated_time" content="2018-01-07T13:46:37.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中的进度条控件">
-<meta name="twitter:description" content="进度条分为两种一种是圆形旋转的进度，另一种是直线进度条（可以设置第二进度）进度条的一些方法：123setVisibility(View.VISIBLE);//设置进度条是否可见View.VISIBLE为可见，View.GONE不可见setProgress(i);//设置进度条进度setSecondaryProgress(i + 10);//设置第二进度条进度">
+<meta name="twitter:description" content="进度条分为两种一种是圆形旋转的进度，另一种是直线进度条（可以设置第二进度）进度条的一些方法：123setVisibility(View.VISIBLE);//设置进度条是否可见View.VISIBLE为可见，View.GONE不可见setProgress(i);//设置进度条进度setSecondaryProgress(i + 10);//设置第二进度条进度（圆形进度条不可设置）">
   
     <link rel="alternative" href="/atom.xml" title="Time Blog" type="application/atom+xml">
   
@@ -172,9 +172,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>进度条分为两种一种是圆形旋转的进度，另一种是直线进度条（可以设置第二进度）<br>进度条的一些方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setVisibility(View.VISIBLE);//设置进度条是否可见View.VISIBLE为可见，View.GONE不可见</span><br><span class="line">setProgress(i);//设置进度条进度</span><br><span class="line">setSecondaryProgress(i + 10);//设置第二进度条进度</span><br></pre></td></tr></table></figure></p>
+        <p>进度条分为两种一种是圆形旋转的进度，另一种是直线进度条（可以设置第二进度）<br>进度条的一些方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setVisibility(View.VISIBLE);//设置进度条是否可见View.VISIBLE为可见，View.GONE不可见</span><br><span class="line">setProgress(i);//设置进度条进度</span><br><span class="line">setSecondaryProgress(i + 10);//设置第二进度条进度（圆形进度条不可设置）</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<h2 id="圆形进度"><a href="#圆形进度" class="headerlink" title="圆形进度"></a>圆形进度</h2><p>圆形进度是ProgressBar。<br>ProgressBar的一些参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">style=&quot;?android:attr/progressBarStyle&quot; //为进度条定义圆形进度外观</span><br><span class="line">android:visibility=&quot;gone&quot;//设置进度条的是否可见(可见为visible，不可见为gone)</span><br><span class="line">android:max=&quot;100&quot;//设置进度条总进度的最大值</span><br></pre></td></tr></table></figure></p>
+<h2 id="圆形进度"><a href="#圆形进度" class="headerlink" title="圆形进度"></a>圆形进度</h2><p>圆形进度的一些参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">style=&quot;?android:attr/progressBarStyle&quot; //为进度条定义圆形进度外观</span><br><span class="line">android:visibility=&quot;gone&quot;//设置进度条的是否可见(可见为visible，不可见为gone)</span><br><span class="line">android:max=&quot;100&quot;//设置进度条总进度的最大值</span><br></pre></td></tr></table></figure></p>
+<h2 id="直线进度条"><a href="#直线进度条" class="headerlink" title="直线进度条"></a>直线进度条</h2><p>直线进度条的一些参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">style=&quot;?android:attr/progressBarStyleHorizontal&quot;//为进度条定义圆形进度外观</span><br><span class="line">android:visibility=&quot;gone&quot;//设置进度条的是否可见(可见为visible，不可见为gone)</span><br><span class="line">android:max=&quot;100&quot;//设置进度条总进度的最大值</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -398,14 +399,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">控件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
@@ -426,11 +419,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Android studio</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -450,27 +447,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">类集框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛型机制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">equals</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">复写</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
+                <a href="javascript:void(0)" class="js-tag color3">控件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -486,7 +463,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">intent</a>
+                <a href="javascript:void(0)" class="js-tag color2">equals</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">复写</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">类集框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">泛型机制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">集合</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,7 +495,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">集合</a>
+                <a href="javascript:void(0)" class="js-tag color2">intent</a>
               </li>
              
               <li class="article-tag-list-item">
