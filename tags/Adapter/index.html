@@ -9,20 +9,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.timewl.top">
-  <title>Android中Intent的使用 | Time Blog</title>
+  <title>Tag: Adapter | Time Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Intent是什么？Intent是一个消息传递对象，可以从其他应用组件请求操作。Intent分为两种类型：  显示Intent：按名称指定要启动的组件，通常是用显示Intent来启动应用组件。实现用户和软件进行交互的一个功能，例如跳转到新的Activity或者启动服务（开关WiFi，下载之类的） 隐式Intent：不会指定特定的组件，而是声明要执行的常规操作，从而允许其他应用的组件来处理它。例如，">
-<meta name="keywords" content="Android,Activity,intent">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Android中Intent的使用">
-<meta property="og:url" content="http://www.timewl.top/2017/12/26/intent1226/index.html">
+  <meta name="description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
+<meta name="keywords" content="Time Blog,时光博客,JAVA,Pyhon,HTML,开发,编程,生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Time Blog">
+<meta property="og:url" content="http://www.timewl.top/tags/Adapter/index.html">
 <meta property="og:site_name" content="Time Blog">
-<meta property="og:description" content="Intent是什么？Intent是一个消息传递对象，可以从其他应用组件请求操作。Intent分为两种类型：  显示Intent：按名称指定要启动的组件，通常是用显示Intent来启动应用组件。实现用户和软件进行交互的一个功能，例如跳转到新的Activity或者启动服务（开关WiFi，下载之类的） 隐式Intent：不会指定特定的组件，而是声明要执行的常规操作，从而允许其他应用的组件来处理它。例如，">
+<meta property="og:description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2017-12-26T13:12:39.151Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android中Intent的使用">
-<meta name="twitter:description" content="Intent是什么？Intent是一个消息传递对象，可以从其他应用组件请求操作。Intent分为两种类型：  显示Intent：按名称指定要启动的组件，通常是用显示Intent来启动应用组件。实现用户和软件进行交互的一个功能，例如跳转到新的Activity或者启动服务（开关WiFi，下载之类的） 隐式Intent：不会指定特定的组件，而是声明要执行的常规操作，从而允许其他应用的组件来处理它。例如，">
+<meta name="twitter:title" content="Time Blog">
+<meta name="twitter:description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
   
     <link rel="alternative" href="/atom.xml" title="Time Blog" type="application/atom+xml">
   
@@ -152,49 +151,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-intent1226" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Android中Intent的使用
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/01/11/simpleAdapt/" class="archive-article-date">
+  	<time datetime="2018-01-11T15:54:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/01/11/simpleAdapt/">Android中SimpleAdapt适配器</a>
     </h1>
   
 
-        
-        <a href="/2017/12/26/intent1226/" class="archive-article-date">
-  	<time datetime="2017-12-26T12:40:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Intent是什么？"><a href="#Intent是什么？" class="headerlink" title="Intent是什么？"></a>Intent是什么？</h2><p>Intent是一个消息传递对象，可以从其他应用组件请求操作。<br>Intent分为两种类型：</p>
-<ul>
-<li>显示Intent：按名称指定要启动的组件，通常是用显示Intent来启动应用组件。实现用户和软件进行交互的一个功能，例如跳转到新的Activity或者启动服务（开关WiFi，下载之类的）</li>
-<li>隐式Intent：不会指定特定的组件，而是声明要执行的常规操作，从而允许其他应用的组件来处理它。例如，如需在地图上向用户显示位置，则可以用隐式Intent，请求另一具有此功能的应用在地图上显示指定位置。</li>
-</ul>
-<a id="more"></a>
-<p>Intent基本用例有以下三个：</p>
-<ul>
-<li>启动Activity：</li>
-<li>Activity表示应用中的一个屏幕，通过Intent传递给startActivity()方法，来启动一个新的Activity。Intent描述了要启动的Activity，并携带了任何必要的数据</li>
-<li>启动服务：</li>
-<li>Service是一个不使用用户界面而在后台执行操作的组件，通过Intent传递给startService()，Intent描述了要启动的服务，并携带了任何必要是数据</li>
-<li>传递广播：</li>
-<li>广播是任何应用均可接受的消息。系统将针对系统事件传递各种广播。通过Intent传递给sendBroadcast(),sendOrderedBroadcast()或sendStickyBroadcast(),还可以将广播传递给其他应用</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -204,125 +190,29 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Activity</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">控件</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">intent</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Adapter</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.timewl.top/2017/12/26/intent1226/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/12/28/intent1228/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          intent跳转Activity以及传递数据
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/12/25/activity1225/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Activity要点</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -345,9 +235,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

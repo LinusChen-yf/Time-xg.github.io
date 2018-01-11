@@ -9,20 +9,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.timewl.top">
-  <title>Android中Intent的使用 | Time Blog</title>
+  <title>Android中SimpleAdapt适配器 | Time Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Intent是什么？Intent是一个消息传递对象，可以从其他应用组件请求操作。Intent分为两种类型：  显示Intent：按名称指定要启动的组件，通常是用显示Intent来启动应用组件。实现用户和软件进行交互的一个功能，例如跳转到新的Activity或者启动服务（开关WiFi，下载之类的） 隐式Intent：不会指定特定的组件，而是声明要执行的常规操作，从而允许其他应用的组件来处理它。例如，">
-<meta name="keywords" content="Android,Activity,intent">
+  <meta name="description" content="ListViewListView是一个显示列表的控件。用来展示列表中的View。这需要一个适配器把数据映射到ListView，所以我们还要创建个数据Item。ListView例如这样： AdapterAdapter也就是所谓的适配器，用来把数据映射到ListView的中介（MVC模式）。">
+<meta name="keywords" content="Android,控件,Adapter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android中Intent的使用">
-<meta property="og:url" content="http://www.timewl.top/2017/12/26/intent1226/index.html">
+<meta property="og:title" content="Android中SimpleAdapt适配器">
+<meta property="og:url" content="http://www.timewl.top/2018/01/11/simpleAdapt/index.html">
 <meta property="og:site_name" content="Time Blog">
-<meta property="og:description" content="Intent是什么？Intent是一个消息传递对象，可以从其他应用组件请求操作。Intent分为两种类型：  显示Intent：按名称指定要启动的组件，通常是用显示Intent来启动应用组件。实现用户和软件进行交互的一个功能，例如跳转到新的Activity或者启动服务（开关WiFi，下载之类的） 隐式Intent：不会指定特定的组件，而是声明要执行的常规操作，从而允许其他应用的组件来处理它。例如，">
+<meta property="og:description" content="ListViewListView是一个显示列表的控件。用来展示列表中的View。这需要一个适配器把数据映射到ListView，所以我们还要创建个数据Item。ListView例如这样： AdapterAdapter也就是所谓的适配器，用来把数据映射到ListView的中介（MVC模式）。">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2017-12-26T13:12:39.151Z">
+<meta property="og:image" content="https://i.imgur.com/Ed7b6GI.png">
+<meta property="og:image" content="https://i.imgur.com/8HOFsfH.jpg">
+<meta property="og:updated_time" content="2018-01-11T17:24:13.913Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android中Intent的使用">
-<meta name="twitter:description" content="Intent是什么？Intent是一个消息传递对象，可以从其他应用组件请求操作。Intent分为两种类型：  显示Intent：按名称指定要启动的组件，通常是用显示Intent来启动应用组件。实现用户和软件进行交互的一个功能，例如跳转到新的Activity或者启动服务（开关WiFi，下载之类的） 隐式Intent：不会指定特定的组件，而是声明要执行的常规操作，从而允许其他应用的组件来处理它。例如，">
+<meta name="twitter:title" content="Android中SimpleAdapt适配器">
+<meta name="twitter:description" content="ListViewListView是一个显示列表的控件。用来展示列表中的View。这需要一个适配器把数据映射到ListView，所以我们还要创建个数据Item。ListView例如这样： AdapterAdapter也就是所谓的适配器，用来把数据映射到ListView的中介（MVC模式）。">
+<meta name="twitter:image" content="https://i.imgur.com/Ed7b6GI.png">
   
     <link rel="alternative" href="/atom.xml" title="Time Blog" type="application/atom+xml">
   
@@ -152,41 +155,43 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-intent1226" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-simpleAdapt" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Android中Intent的使用
+      Android中SimpleAdapt适配器
     </h1>
   
 
         
-        <a href="/2017/12/26/intent1226/" class="archive-article-date">
-  	<time datetime="2017-12-26T12:40:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-26</time>
+        <a href="/2018/01/11/simpleAdapt/" class="archive-article-date">
+  	<time datetime="2018-01-11T15:54:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Intent是什么？"><a href="#Intent是什么？" class="headerlink" title="Intent是什么？"></a>Intent是什么？</h2><p>Intent是一个消息传递对象，可以从其他应用组件请求操作。<br>Intent分为两种类型：</p>
-<ul>
-<li>显示Intent：按名称指定要启动的组件，通常是用显示Intent来启动应用组件。实现用户和软件进行交互的一个功能，例如跳转到新的Activity或者启动服务（开关WiFi，下载之类的）</li>
-<li>隐式Intent：不会指定特定的组件，而是声明要执行的常规操作，从而允许其他应用的组件来处理它。例如，如需在地图上向用户显示位置，则可以用隐式Intent，请求另一具有此功能的应用在地图上显示指定位置。</li>
-</ul>
+        <h2 id="ListView"><a href="#ListView" class="headerlink" title="ListView"></a>ListView</h2><p>ListView是一个显示列表的控件。用来展示列表中的View。这需要一个适配器把数据映射到ListView，所以我们还要创建个数据Item。<br>ListView例如这样：<img src="https://i.imgur.com/Ed7b6GI.png" alt="ListView"></p>
+<h2 id="Adapter"><a href="#Adapter" class="headerlink" title="Adapter"></a>Adapter</h2><p>Adapter也就是所谓的适配器，用来把数据映射到ListView的中介（MVC模式）。</p>
 <a id="more"></a>
-<p>Intent基本用例有以下三个：</p>
+<p>看一张Adapter的类图：<br><img src="https://i.imgur.com/8HOFsfH.jpg" alt=""></p>
 <ul>
-<li>启动Activity：</li>
-<li>Activity表示应用中的一个屏幕，通过Intent传递给startActivity()方法，来启动一个新的Activity。Intent描述了要启动的Activity，并携带了任何必要的数据</li>
-<li>启动服务：</li>
-<li>Service是一个不使用用户界面而在后台执行操作的组件，通过Intent传递给startService()，Intent描述了要启动的服务，并携带了任何必要是数据</li>
-<li>传递广播：</li>
-<li>广播是任何应用均可接受的消息。系统将针对系统事件传递各种广播。通过Intent传递给sendBroadcast(),sendOrderedBroadcast()或sendStickyBroadcast(),还可以将广播传递给其他应用</li>
+<li><p>ArrayAdapter：支持泛型操作，最简单的一个Adapter，只能展现一行文字~</p>
+</li>
+<li><p>SimpleAdapter：同样具有良好扩展性的一个Adapter，可以自定义多种效果！</p>
+</li>
+<li><p>SimpleCursorAdapter：用于显示简单文本类型的listView，一般在数据库那里会用到，不过有点过时</p>
+</li>
+<li></li>
+<li>BaseAdapter：抽象类，实际开发中我们会继承这个类并且重写相关方法，用得最多的一个Adapter！</li>
 </ul>
+<h2 id="下面看SimpleAdapter代码"><a href="#下面看SimpleAdapter代码" class="headerlink" title="下面看SimpleAdapter代码"></a>下面看SimpleAdapter代码</h2><p>MianActivity:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends ListActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.mainlayout);</span><br><span class="line"></span><br><span class="line">        //创建映射的列表对象</span><br><span class="line">        ArrayList&lt;HashMap&lt;String,String&gt;&gt; list = new ArrayList&lt;HashMap&lt;String, String&gt;&gt;();</span><br><span class="line">        //创建映射对象 </span><br><span class="line">        HashMap&lt;String,String&gt; map1 = new HashMap&lt;String, String&gt;();</span><br><span class="line">        HashMap&lt;String,String&gt; map2 = new HashMap&lt;String, String&gt;();</span><br><span class="line"></span><br><span class="line">        map1.put(&quot;name&quot;, &quot;Time&quot;);</span><br><span class="line">        map1.put(&quot;ip&quot;,&quot;192.168.1.1&quot;);</span><br><span class="line">        map2.put(&quot;name&quot;,&quot;WW&quot;);</span><br><span class="line">        map2.put(&quot;ip&quot;,&quot;192.168.1.2&quot;);</span><br><span class="line">        list.add(map1);</span><br><span class="line">        list.add(map2);</span><br><span class="line"></span><br><span class="line">        //创建一个简单适配器</span><br><span class="line">        SimpleAdapter listadapter = new SimpleAdapter(this,list,R.layout.layout,</span><br><span class="line">                new String[]&#123;&quot;name&quot;,&quot;ip&quot;&#125;,new int[]&#123;R.id.name,R.id.ip&#125;);</span><br><span class="line"></span><br><span class="line">        //设置适配器</span><br><span class="line">        setListAdapter(listadapter);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected void onListItemclick(ListView l, View v,int position ,long id)&#123;</span><br><span class="line">        super.onListItemClick(l,v,position,id);</span><br><span class="line">        System.out.print(&quot;id ----&quot; + id);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再看看布局文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">              android:layout_width=&quot;match_parent&quot;</span><br><span class="line">              android:layout_height=&quot;match_parent&quot;</span><br><span class="line">                android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:id=&quot;@+id/listlayout&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;&gt;</span><br><span class="line">        &lt;ListView</span><br><span class="line">            android:id=&quot;@+id/android:list&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:scrollbars=&quot;vertical&quot;&gt;&lt;/ListView&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">              android:layout_width=&quot;match_parent&quot;</span><br><span class="line">              android:layout_height=&quot;match_parent&quot;</span><br><span class="line">                android:orientation=&quot;horizontal&quot;&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:id=&quot;@+id/name&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_weight=&quot;1&quot;/&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:id=&quot;@+id/ip&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_weight=&quot;1&quot;/&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -204,11 +209,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Activity</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">控件</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">intent</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Adapter</a>
         		</li>
       		
 		</ul>
@@ -264,7 +269,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.timewl.top/2017/12/26/intent1226/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.timewl.top/2018/01/11/simpleAdapt/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -278,18 +283,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/12/28/intent1228/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          intent跳转Activity以及传递数据
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/12/25/activity1225/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Activity要点</div>
+    <a href="/2018/01/07/ProgressBar0107/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android中的进度条控件</div>
       <i class="icon-circle-right"></i>
     </a>
   
