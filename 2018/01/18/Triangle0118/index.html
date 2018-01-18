@@ -9,19 +9,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.timewl.top">
-  <title>Tag: C语言 | Time Blog</title>
+  <title>ACM之杨辉三角 | Time Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
-<meta name="keywords" content="Time Blog,时光博客,JAVA,Pyhon,HTML,开发,编程,生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Time Blog">
-<meta property="og:url" content="http://www.timewl.top/tags/C语言/index.html">
+  <meta name="description" content="题目： 输入数据包含多个测试实例，每个测试实例的输入只包含一个正整数n（1&amp;lt;=n&amp;lt;=30），表示将要输出的杨辉三角的层数。 只要发现杨辉三角的规律，利用二维数组可以很简单的写出，参考代码如下：12345678910111213141516171819202122232425262728293031323334353637383940414243import java.util.Scan">
+<meta name="keywords" content="ACM,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ACM之杨辉三角">
+<meta property="og:url" content="http://www.timewl.top/2018/01/18/Triangle0118/index.html">
 <meta property="og:site_name" content="Time Blog">
-<meta property="og:description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
+<meta property="og:description" content="题目： 输入数据包含多个测试实例，每个测试实例的输入只包含一个正整数n（1&amp;lt;=n&amp;lt;=30），表示将要输出的杨辉三角的层数。 只要发现杨辉三角的规律，利用二维数组可以很简单的写出，参考代码如下：12345678910111213141516171819202122232425262728293031323334353637383940414243import java.util.Scan">
 <meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2018-01-18T11:35:50.373Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Time Blog">
-<meta name="twitter:description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
+<meta name="twitter:title" content="ACM之杨辉三角">
+<meta name="twitter:description" content="题目： 输入数据包含多个测试实例，每个测试实例的输入只包含一个正整数n（1&amp;lt;=n&amp;lt;=30），表示将要输出的杨辉三角的层数。 只要发现杨辉三角的规律，利用二维数组可以很简单的写出，参考代码如下：12345678910111213141516171819202122232425262728293031323334353637383940414243import java.util.Scan">
   
     <link rel="alternative" href="/atom.xml" title="Time Blog" type="application/atom+xml">
   
@@ -151,72 +152,151 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Triangle0118" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/21/sublime1221/" class="archive-article-date">
-  	<time datetime="2017-12-21T14:05:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/21/sublime1221/">设置在sublime Text上编译运行程序</a>
+    <h1 class="article-title" itemprop="name">
+      ACM之杨辉三角
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/01/18/Triangle0118/" class="archive-article-date">
+  	<time datetime="2018-01-18T11:29:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>题目： 输入数据包含多个测试实例，每个测试实例的输入只包含一个正整数n（1&lt;=n&lt;=30），表示将要输出的杨辉三角的层数。</p>
+<p>只要发现杨辉三角的规律，利用二维数组可以很简单的写出，参考代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class Triangle&#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">		Scanner sc = new Scanner(System.in);</span><br><span class="line"></span><br><span class="line">		//实现多次输入</span><br><span class="line">		while(sc.hasNext())&#123;</span><br><span class="line"></span><br><span class="line">			//输入行数</span><br><span class="line">			int n = sc.nextInt();</span><br><span class="line">			//定义二维数组</span><br><span class="line">			int a[][] = new int[n][];</span><br><span class="line"></span><br><span class="line">			</span><br><span class="line">			for(int i = 0;i &lt; n;i++)&#123;</span><br><span class="line"></span><br><span class="line">				//初始化每一行的这个一维数组</span><br><span class="line">				a[i] = new int[i + 1];</span><br><span class="line">				</span><br><span class="line">				for(int j = 0;j &lt;= i;j++)&#123;</span><br><span class="line">					if(j == 0 || j == i)&#123;</span><br><span class="line">						//令边上的全为1</span><br><span class="line">						a[i][j] = 1;</span><br><span class="line">					&#125;</span><br><span class="line">					else&#123;</span><br><span class="line">						//利用杨辉三角的规律计算</span><br><span class="line">						a[i][j] = a[i - 1][j - 1] + a[i -1][j];</span><br><span class="line">					&#125;</span><br><span class="line">					//输出</span><br><span class="line">					if(i == j)&#123;</span><br><span class="line">						System.out.println(a[i][j]);</span><br><span class="line">					&#125;</span><br><span class="line">					else&#123;</span><br><span class="line">						System.out.print(a[i][j] + &quot; &quot;);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ACM</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">sublime</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C语言</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编译</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.timewl.top/2018/01/18/Triangle0118/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/01/11/simpleAdapt/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android中SimpleAdapt适配器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -239,9 +319,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
