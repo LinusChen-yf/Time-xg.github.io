@@ -153,6 +153,112 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-javascript0124" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/24/javascript0124/">javascript初体验</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/24/javascript0124/" class="archive-article-date">
+  	<time datetime="2018-01-24T09:18:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="javascript基本用法"><a href="#javascript基本用法" class="headerlink" title="javascript基本用法"></a>javascript基本用法</h3><ul>
+<li>javascript可以在html中内嵌语句，也可以调用外部的.js文件(可以在heard中也可以在body中)。</li>
+<li>javacaript类似于java由多条语句组成，语句结束用分号表示。</li>
+<li>JavaScript的注释也同java，单行<code>//</code>，代码块<code>/*  */</code></li>
+<li>JavaScript变量 <code>var 变量名</code>这样定义</li>
+<li>JavaScript函数 <code>function 函数名(){}</code>定义 , <code>函数名()</code>调用<h3 id="JavaScript输出内容"><a href="#JavaScript输出内容" class="headerlink" title="JavaScript输出内容"></a>JavaScript输出内容</h3><code>document.write()</code>是直接指向HTML的输出流写内容。<br>如果需要输出空格有以下两种方法：</li>
+<li>1.使用输出html标签<code>&amp;nbsp;</code>来解决，例<code>document.write(&quot;&amp;nbsp;&amp;nbsp;&quot;+&quot;1&quot;+&quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&quot;+&quot;23&quot;);</code></li>
+<li>2.使用css样式来解决，在输出时添加<code>white-space:pre</code>样式属性，例<code>document.write(&quot;&lt;span style=&#39;white-space:pre;&#39;&gt;&quot;+&quot;  1        2    3    &quot;+&quot;&lt;/span&gt;&quot;);</code></li>
+</ul>
+<h3 id="JavaScript消息对话框"><a href="#JavaScript消息对话框" class="headerlink" title="JavaScript消息对话框"></a>JavaScript消息对话框</h3><p>网页中弹出的小窗口就是JavaScript的消息对话框实现的</p>
+<h5 id="第一种消息对话框，就是alert-方法，弹出对话框。"><a href="#第一种消息对话框，就是alert-方法，弹出对话框。" class="headerlink" title="第一种消息对话框，就是alert()方法，弹出对话框。"></a>第一种消息对话框，就是<code>alert()</code>方法，弹出对话框。</h5><h5 id="第二种消息对话框，当弹出对话框时，有确认和取消两个选项，也就是confirm-。返回类型是boolean类型"><a href="#第二种消息对话框，当弹出对话框时，有确认和取消两个选项，也就是confirm-。返回类型是boolean类型" class="headerlink" title="第二种消息对话框，当弹出对话框时，有确认和取消两个选项，也就是confirm()。返回类型是boolean类型"></a>第二种消息对话框，当弹出对话框时，有确认和取消两个选项，也就是<code>confirm()</code>。返回类型是boolean类型</h5><h5 id="第三种消息对话框是提问类型prompt-str1-str2"><a href="#第三种消息对话框是提问类型prompt-str1-str2" class="headerlink" title="第三种消息对话框是提问类型prompt(str1,str2)"></a>第三种消息对话框是提问类型<code>prompt(str1,str2)</code></h5><p>参数：str1显示消息对话框的文本(不可修改)，str2文本框的内容(可修改)<br>返回值：点确定，文本框的内容将作为函数的返回值。点取消返回null</p>
+<h3 id="JavaScript打开窗口"><a href="#JavaScript打开窗口" class="headerlink" title="JavaScript打开窗口"></a>JavaScript打开窗口</h3><h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><p><code>window.open([URL],[窗口名称],[参数字符串])</code><br></p>
+<h5 id="参数说明："><a href="#参数说明：" class="headerlink" title="参数说明："></a>参数说明：</h5><p>URL：可选参数，在窗口中显示网页或路径，如果省略这个参数，或者值为空，则窗口不显示任何文档。<br><br>窗口名称： 可选参数，被打开窗口的名称。</p>
+<ul>
+<li>该名称由字母，数字，下划线组成</li>
+<li>“_top”,”_blank”,”_self”具有特殊意义的名称。<br>_blank：在新窗口显示目标网页<br>_self：在当前窗口显示目标网页<br>_top：框架网页中在上部窗口中显示目标网页</li>
+<li>相同的name的窗口只能创建一个</li>
+<li>name不能含有空格<br><h5 id="参数字符串：可选参数，设置窗口参数，各个参数逗号隔开"><a href="#参数字符串：可选参数，设置窗口参数，各个参数逗号隔开" class="headerlink" title="参数字符串：可选参数，设置窗口参数，各个参数逗号隔开."></a>参数字符串：可选参数，设置窗口参数，各个参数逗号隔开.</h5><h5 id="参数表："><a href="#参数表：" class="headerlink" title="参数表："></a>参数表：</h5><img src="https://i.imgur.com/T370ta7.png" alt=""></li>
+</ul>
+<h3 id="JavaScript关闭窗口"><a href="#JavaScript关闭窗口" class="headerlink" title="JavaScript关闭窗口"></a>JavaScript关闭窗口</h3><h5 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h5><p><code>window.close()（关闭本窗口）或&lt;窗口对象&gt;.close</code></p>
+<h5 id="用法："><a href="#用法：" class="headerlink" title="用法："></a>用法：</h5><p>将新打开窗口的对象存储在变量中，用变量调用<code>变量.close()</code></p>
+<h3 id="通过id获取元素"><a href="#通过id获取元素" class="headerlink" title="通过id获取元素"></a>通过id获取元素</h3><h5 id="语法：-1"><a href="#语法：-1" class="headerlink" title="语法："></a>语法：</h5><p>`document.getElementById(“id”);</p>
+<h5 id="用法：-1"><a href="#用法：-1" class="headerlink" title="用法："></a>用法：</h5><p>可以将获取的元素储存在变量中，随后使用变量，例如：<code>var element = document.getElementById(&quot;id&quot;);   doucument.write(element)</code><br>ps:document.getElementById(“id”);得到的是id的对象。document.getElementById(“id”).innerHTML得到的才是元素内容;</p>
+<h3 id="改变HTML样式"><a href="#改变HTML样式" class="headerlink" title="改变HTML样式"></a>改变HTML样式</h3><h5 id="语法-1"><a href="#语法-1" class="headerlink" title="语法:"></a>语法:</h5><p><code>Object.style.property = new style;</code></p>
+<h5 id="基本属性表"><a href="#基本属性表" class="headerlink" title="基本属性表"></a>基本属性表</h5><p><img src="https://i.imgur.com/hNi4ms8.png" alt=""></p>
+<h5 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;p id=&quot;pcon&quot;&gt;Hello World!&lt;/p&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">   var mychar = document.getElementById(&quot;pcon&quot;);</span><br><span class="line">   mychar.style.color=&quot;red&quot;;</span><br><span class="line">   mychar.style.fontSize=&quot;20&quot;;</span><br><span class="line">   mychar.style.backgroundColor =&quot;blue&quot;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="显示和隐藏"><a href="#显示和隐藏" class="headerlink" title="显示和隐藏"></a>显示和隐藏</h3><h5 id="语法-2"><a href="#语法-2" class="headerlink" title="语法:"></a>语法:</h5><p><code>Object.style.display = value;</code></p>
+<h5 id="value的值"><a href="#value的值" class="headerlink" title="value的值"></a>value的值</h5><p>none是隐藏,block是显示.</p>
+<h3 id="控制类名"><a href="#控制类名" class="headerlink" title="控制类名"></a>控制类名</h3><h5 id="语法-3"><a href="#语法-3" class="headerlink" title="语法:"></a>语法:</h5><p><code>object.className = className;</code></p>
+<h5 id="作用"><a href="#作用" class="headerlink" title="作用:"></a>作用:</h5><ul>
+<li>1.获取元素的class属性</li>
+<li>2.为网页内的某个元素指定的一个css样式来更改元素的外观</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/24/javascript0124/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Triangle0118" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -880,90 +986,6 @@
 
 
   
-    <article id="post-intent1228" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/28/intent1228/">intent跳转Activity以及传递数据</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/28/intent1228/" class="archive-article-date">
-  	<time datetime="2017-12-28T11:53:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="用Intent跳转Activity"><a href="#用Intent跳转Activity" class="headerlink" title="用Intent跳转Activity"></a>用Intent跳转Activity</h2><p>我们可以创建一个监听器，在监听器中创建一个Intent来跳转Activity和传输数据，用startActivity()来跳转到另一个Activity，再将一个控件创建一个点击事件来达到跳转Activity的效果。</p>
-        
-          <a class="article-more-a" href="/2017/12/28/intent1228/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Activity</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">intent</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/28/intent1228/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1069,11 +1091,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">控件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1089,63 +1119,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">控件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Android studio</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">类集框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">集合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">equals</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">复写</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">映射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1165,7 +1143,59 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">eclipse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">equals</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">复写</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">类集框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">集合</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">泛型机制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">映射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">intent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1173,7 +1203,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">intent</a>
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">同步</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1186,14 +1220,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">编译</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">同步</a>
               </li>
             
             <div class="clearfix"></div>
