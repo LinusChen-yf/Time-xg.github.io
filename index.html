@@ -153,6 +153,171 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-viewtouch0611" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/11/viewtouch0611/">Android触摸事件的传递机制</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/11/viewtouch0611/" class="archive-article-date">
+  	<time datetime="2019-06-11T08:57:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>本篇博客主要是介绍Activity、View、ViewGroup三者的触摸事件传递机制。一次完整的事件传递主要包括三个阶段，分别是事件的分发、拦截和消费。这次就对整次事件的传递进行分析。</p>
+<h3 id="1-1-触摸事件的类型"><a href="#1-1-触摸事件的类型" class="headerlink" title="1.1 触摸事件的类型"></a>1.1 触摸事件的类型</h3><p>触摸事件对应的MotionEvent类，主要类型有三种。</p>
+<ul>
+<li>ACTION_DOWN: 用户手指按下的操作，标志这触摸事件的开始。</li>
+<li>ACTION_MOVE: 用户手指按压屏幕后，在松开之前，如果移动的距离超过一定的阙值，那么会判定位ACTION_MOVE操作</li>
+<li>ACTION_UP: 用户手指离开屏幕的操作，标志着一次触摸事件的结束。</li>
+</ul>
+<h3 id="1-2-事件传递的三个阶段"><a href="#1-2-事件传递的三个阶段" class="headerlink" title="1.2 事件传递的三个阶段"></a>1.2 事件传递的三个阶段</h3><ul>
+<li>分发(Dispatch)： 事件的分发对应着dispatchTouchEvent方法。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public boolean dispatchTouchEvent(MotionEvent event)</span><br></pre></td></tr></table></figure>
+<p>根据当前视图的具体实现逻辑，来决定这个事件是直接消费还是分发给子视图处理。返回值true是表示当前视图直接消费掉。返回值位super.dispatchTouchEvent表示继续分发该事件，如果当前视图是ViewGroup及其子类，则会调用onInterceptTouchEvent方法判定是否拦截该事件。</p>
+<ul>
+<li>拦截(Intercept): 事件的拦截对应着onInterceptTouchEvent方法，这个方法只有在ViewGroup及其子类中才存在。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public boolean onInterceptTouchEvent(MotionEvent event)</span><br></pre></td></tr></table></figure>
+<p>返回true代表拦截这个事件，返回flase或者super.onInterceptTouchEvent表示不对事件进行拦截</p>
+<ul>
+<li>消费(Consume): 事件的消费对应着onTouchEvent方法。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public boolean onTouchEvent(MotionEvent event)</span><br></pre></td></tr></table></figure>
+<p>返回值位true时表示当前视图可以处理对应的事件，事件不会向上传递给父视图。返回false表示不处理，事件会传递给父视图的onTouchEvent进行处理。</p>
+<h3 id="1-3-View的事件传递机制"><a href="#1-3-View的事件传递机制" class="headerlink" title="1.3 View的事件传递机制"></a>1.3 View的事件传递机制</h3><p>写了个小demo测试了下传递机制，运行结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">top.timewl.touchevent E/MainActivity: dispatchTouchEvent ACTION_DOWN</span><br><span class="line">top.timewl.touchevent E/MyTextView: dispatchTouchEvent ACTION_DOWN</span><br><span class="line">top.timewl.touchevent E/MainActivity: MyTextView onTouchEvent ACTION_DOWN</span><br><span class="line">top.timewl.touchevent E/MyTextView: onTouchEvent ACTION_DOWN</span><br><span class="line">top.timewl.touchevent E/MainActivity: dispatchTouchEvent ACTION_UP</span><br><span class="line">top.timewl.touchevent E/MyTextView: dispatchTouchEvent ACTION_UP</span><br><span class="line">top.timewl.touchevent E/MainActivity: MyTextView onTouchEvent ACTION_UP</span><br><span class="line">top.timewl.touchevent E/MyTextView: onTouchEvent ACTION_UP</span><br><span class="line">top.timewl.touchevent E/MainActivity: MyTextView onClick</span><br></pre></td></tr></table></figure>
+<ul>
+<li>1.可以看出触摸事件的传递流程是从分发开始的，如果不进行人为的干预，则事件会依照嵌套层次从外层向内层传递，达到最内层的View，就由它的onTouchEvent处理，如果该方法能够消费该事件则返回true，否则返回false，这事件会重新向外层传递，并由外层的onTouchEvent处理。</li>
+<li>2.如果对事件进行人为干预，会导致事件提前消费掉，内层View将不会收到这个事件</li>
+<li>3.View控件的事件是先执行onTouch方法，在最够才执行onClick方法。如果onTouch返回true，则不会传递，同时也不会调用onClick方法!</li>
+</ul>
+<p><a href="https://i.imgur.com/BJjpZAQ.jpg" target="_blank" rel="noopener">ViewTouch流程图</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/11/viewtouch0611/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-LinkedList0502" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/02/LinkedList0502/">LinkedList</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/02/LinkedList0502/" class="archive-article-date">
+  	<time datetime="2018-05-02T10:46:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/02/LinkedList0502/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-SharePreferences" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -792,170 +957,9 @@
 
 
   
-    <article id="post-checkbox0107" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/07/checkbox0107/">Android中选择控件</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/07/checkbox0107/" class="archive-article-date">
-  	<time datetime="2018-01-07T06:57:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>平常在Android应用中多多少少回看到一些选择性别啊，选择兴趣爱好的一些选择控件。<br>选择框也分为两种。一种为单选框，一种为多选框。</p>
-<h2 id="单选控件"><a href="#单选控件" class="headerlink" title="单选控件"></a>单选控件</h2><p>RadioGroup为选择组，RadioButton为选择按钮。<br>单选按钮肯定要分组的，例如性别，是否成年。<br>首先我RadioGroup和RadioButton的引用，为引用寻找id，然后创建监听器，创建匿名内部类复写RadioGroup.OnCheckedChangeListener接口。</p>
-        
-          <a class="article-more-a" href="/2018/01/07/checkbox0107/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">控件</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/07/checkbox0107/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-RelativeLayout0106" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/06/RelativeLayout0106/">Android中RelativeLayout布局</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/06/RelativeLayout0106/" class="archive-article-date">
-  	<time datetime="2018-01-06T13:26:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>RelativeLayout是i相对布局，是以一个控件相对另一个控件来布局的。相比其他布局，它具有更高的灵活性。也是非常常用的一种布局。</p>
-        
-          <a class="article-more-a" href="/2018/01/06/RelativeLayout0106/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Layout</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/06/RelativeLayout0106/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -967,7 +971,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Time
+    		&copy; 2019 Time
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1066,6 +1070,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
              
@@ -1078,15 +1086,55 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">控件</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Android studio</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">eclipse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">类集框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">泛型机制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">equals</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">复写</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">映射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1106,43 +1154,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">equals</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">复写</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">类集框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">映射</a>
+                <a href="javascript:void(0)" class="js-tag color2">intent</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1150,11 +1162,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛型机制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">intent</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1162,7 +1170,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">权限</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1170,7 +1178,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">权限</a>
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1183,10 +1191,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">编译</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
               </li>
              
               <li class="article-tag-list-item">
