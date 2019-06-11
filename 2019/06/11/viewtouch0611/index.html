@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Time Blog">
 <meta property="og:description" content="概述本篇博客主要是介绍Activity、View、ViewGroup三者的触摸事件传递机制。一次完整的事件传递主要包括三个阶段，分别是事件的分发、拦截和消费。这次就对整次事件的传递进行分析。 1.1 触摸事件的类型触摸事件对应的MotionEvent类，主要类型有三种。  ACTION_DOWN: 用户手指按下的操作，标志这触摸事件的开始。 ACTION_MOVE: 用户手指按压屏幕后，在松开之前">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2019-06-11T12:09:37.877Z">
+<meta property="og:updated_time" content="2019-06-11T12:23:20.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android触摸事件的传递机制">
 <meta name="twitter:description" content="概述本篇博客主要是介绍Activity、View、ViewGroup三者的触摸事件传递机制。一次完整的事件传递主要包括三个阶段，分别是事件的分发、拦截和消费。这次就对整次事件的传递进行分析。 1.1 触摸事件的类型触摸事件对应的MotionEvent类，主要类型有三种。  ACTION_DOWN: 用户手指按下的操作，标志这触摸事件的开始。 ACTION_MOVE: 用户手指按压屏幕后，在松开之前">
@@ -201,7 +201,7 @@
 <li>2.如果对事件进行人为干预，会导致事件提前消费掉，内层View将不会收到这个事件</li>
 <li>3.View控件的事件是先执行onTouch方法，在最够才执行onClick方法。如果onTouch返回true，则不会传递，同时也不会调用onClick方法!</li>
 </ul>
-<p><a href="https://i.imgur.com/BJjpZAQ.jpg" target="_blank" rel="noopener">ViewTouch流程图</a></p>
+<p><a href="https://s2.ax1x.com/2019/06/11/VgHTIA.jpg" target="_blank" rel="noopener"></a></p>
 
       
 
@@ -286,8 +286,8 @@
 <nav id="article-nav">
   
   
-    <a href="/2018/05/02/LinkedList0502/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">LinkedList</div>
+    <a href="/2018/04/13/SharePreferences/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android利用SharePredferences来存储数据</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -417,6 +417,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">控件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Layout</a>
               </li>
              
@@ -426,10 +430,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -445,7 +445,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">控件</a>
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -453,47 +453,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">类集框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛型机制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">equals</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">复写</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">映射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,11 +473,51 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">intent</a>
+                <a href="javascript:void(0)" class="js-tag color2">equals</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">复写</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">eclipse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">类集框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">泛型机制</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">集合</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">intent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">映射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,11 +533,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
