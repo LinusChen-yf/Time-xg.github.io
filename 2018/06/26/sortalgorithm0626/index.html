@@ -11,18 +11,18 @@
   <link rel="dns-prefetch" href="http://www.timewl.top">
   <title>排序算法学习 | Time Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言一个好的排序算法能大大提高排序的速度，现在来学习一些常见的排序算法 选择排序算法选择排序算法是最简单的排序算法，通过遍历查找数组中最小的一位元素，在通过一次遍历将数组中最小的元素加入新数组并在原数组中删除改元素。1234567891011121314151617181920212223def findSmallest(arr):    # 存储最小的值    smallest = arr[0]">
+  <meta name="description" content="前言一个好的排序算法能大大提高排序的速度，现在来学习一些常见的排序算法">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="排序算法学习">
 <meta property="og:url" content="http://www.timewl.top/2018/06/26/sortalgorithm0626/index.html">
 <meta property="og:site_name" content="Time Blog">
-<meta property="og:description" content="前言一个好的排序算法能大大提高排序的速度，现在来学习一些常见的排序算法 选择排序算法选择排序算法是最简单的排序算法，通过遍历查找数组中最小的一位元素，在通过一次遍历将数组中最小的元素加入新数组并在原数组中删除改元素。1234567891011121314151617181920212223def findSmallest(arr):    # 存储最小的值    smallest = arr[0]">
+<meta property="og:description" content="前言一个好的排序算法能大大提高排序的速度，现在来学习一些常见的排序算法">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2020-07-28T03:08:00.323Z">
+<meta property="og:updated_time" content="2020-07-28T03:24:33.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序算法学习">
-<meta name="twitter:description" content="前言一个好的排序算法能大大提高排序的速度，现在来学习一些常见的排序算法 选择排序算法选择排序算法是最简单的排序算法，通过遍历查找数组中最小的一位元素，在通过一次遍历将数组中最小的元素加入新数组并在原数组中删除改元素。1234567891011121314151617181920212223def findSmallest(arr):    # 存储最小的值    smallest = arr[0]">
+<meta name="twitter:description" content="前言一个好的排序算法能大大提高排序的速度，现在来学习一些常见的排序算法">
   
     <link rel="alternative" href="/atom.xml" title="Time Blog" type="application/atom+xml">
   
@@ -172,8 +172,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一个好的排序算法能大大提高排序的速度，现在来学习一些常见的排序算法</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一个好的排序算法能大大提高排序的速度，现在来学习一些常见的排序算法<br><a id="more"></a></p>
 <h1 id="选择排序算法"><a href="#选择排序算法" class="headerlink" title="选择排序算法"></a>选择排序算法</h1><p>选择排序算法是最简单的排序算法，通过遍历查找数组中最小的一位元素，在通过一次遍历将数组中最小的元素加入新数组并在原数组中删除改元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">def findSmallest(arr):</span><br><span class="line">    # 存储最小的值</span><br><span class="line">    smallest = arr[0]</span><br><span class="line">    # 储存最小值的索引</span><br><span class="line">    smallest_index = 0</span><br><span class="line">    for i in range(1, len(arr)):</span><br><span class="line">        if arr[i] &lt; smallest:</span><br><span class="line">            smallest = arr[i]</span><br><span class="line">            smallest_index = i</span><br><span class="line">    return smallest_index</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def selectionSort(arr):</span><br><span class="line">    newarr = []</span><br><span class="line">    for i in range(len(arr)):</span><br><span class="line">        smallest_index = findSmallest(arr)</span><br><span class="line">        newarr.append(arr.pop(smallest_index))</span><br><span class="line">    return newarr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">arr = [3, 6, 1, 7, 9, 2]</span><br><span class="line">print(selectionSort(arr))</span><br><span class="line"># result [1, 2, 3, 6, 7, 9]</span><br></pre></td></tr></table></figure></p>
+<p>可以看出整个算法循环了两次，时间复杂度为O(n2)，速度非常的慢</p>
+<h1 id="快速排序算法"><a href="#快速排序算法" class="headerlink" title="快速排序算法"></a>快速排序算法</h1><p>快速排序算法采用了分而治之D&amp;C的算法思想，利用递归的来实现的排序算法。<br>首先我门先要找出算法的基线条件，什么时候数组不用排序？</p>
+<ul>
+<li>数组中只有一个元素。</li>
+<li>数组中没有元素。<br>这两种情况下数组不需要排序，所有这就是我们快速排序算法的基线条件。所以我们可以先找到一个基准值，跟其他的元素对比，将数组分为两组小数组，通过不断的递归，直至我们的基线条件。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def quicksort(arr):</span><br><span class="line">    # 基线条件</span><br><span class="line">    if len(arr) &lt; 2:</span><br><span class="line">        return arr</span><br><span class="line">    else:</span><br><span class="line">        # 基准值</span><br><span class="line">        pivot = arr[0]</span><br><span class="line">        less = [i for i in arr[1:] if i &lt;= pivot]</span><br><span class="line">        greater = [i for i in arr[1:] if i &gt; pivot]</span><br><span class="line">        return quicksort(less) + [pivot] + quicksort(greater)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(quicksort([3, 6, 1, 7, 9, 2]))</span><br></pre></td></tr></table></figure></li>
+</ul>
 
       
 
@@ -398,11 +404,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">控件</a>
+                <a href="javascript:void(0)" class="js-tag color2">Layout</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Layout</a>
+                <a href="javascript:void(0)" class="js-tag color3">控件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -414,43 +420,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递推</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android studio</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">密码学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数字地址</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PDF</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,6 +441,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">递推</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android studio</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -490,19 +476,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">intent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">集合</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">映射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">intent</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,11 +500,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">同步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">密码学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数字地址</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PDF</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,14 +549,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">编译</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">同步</a>
               </li>
             
             <div class="clearfix"></div>
