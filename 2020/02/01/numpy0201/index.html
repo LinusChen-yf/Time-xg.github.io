@@ -11,18 +11,18 @@
   <link rel="dns-prefetch" href="http://www.timewl.top">
   <title>numpy0201 | Time Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="numpy介绍Numpy（Numerical Python）是一个开源的Python科学计算库，用于快速处理任意维度的数组。 Numpy支持常见的数组和矩阵操作。对于同样的数值计算任务，使用Numpy比直接使用Python要简洁的多。 Numpy使用ndarray对象来处理多维数组，该对象是一个快速而灵活的大数据容器。 numpy的优势 内存块风格numpy采用的是顺序存储，相比于python l">
+  <meta name="description" content="numpy介绍Numpy（Numerical Python）是一个开源的Python科学计算库，用于快速处理任意维度的数组。 Numpy支持常见的数组和矩阵操作。对于同样的数值计算任务，使用Numpy比直接使用Python要简洁的多。 Numpy使用ndarray对象来处理多维数组，该对象是一个快速而灵活的大数据容器。">
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="numpy0201">
 <meta property="og:url" content="http://www.timewl.top/2020/02/01/numpy0201/index.html">
 <meta property="og:site_name" content="Time Blog">
-<meta property="og:description" content="numpy介绍Numpy（Numerical Python）是一个开源的Python科学计算库，用于快速处理任意维度的数组。 Numpy支持常见的数组和矩阵操作。对于同样的数值计算任务，使用Numpy比直接使用Python要简洁的多。 Numpy使用ndarray对象来处理多维数组，该对象是一个快速而灵活的大数据容器。 numpy的优势 内存块风格numpy采用的是顺序存储，相比于python l">
+<meta property="og:description" content="numpy介绍Numpy（Numerical Python）是一个开源的Python科学计算库，用于快速处理任意维度的数组。 Numpy支持常见的数组和矩阵操作。对于同样的数值计算任务，使用Numpy比直接使用Python要简洁的多。 Numpy使用ndarray对象来处理多维数组，该对象是一个快速而灵活的大数据容器。">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2020-08-01T08:36:24.464Z">
+<meta property="og:updated_time" content="2020-08-01T08:55:08.704Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="numpy0201">
-<meta name="twitter:description" content="numpy介绍Numpy（Numerical Python）是一个开源的Python科学计算库，用于快速处理任意维度的数组。 Numpy支持常见的数组和矩阵操作。对于同样的数值计算任务，使用Numpy比直接使用Python要简洁的多。 Numpy使用ndarray对象来处理多维数组，该对象是一个快速而灵活的大数据容器。 numpy的优势 内存块风格numpy采用的是顺序存储，相比于python l">
+<meta name="twitter:description" content="numpy介绍Numpy（Numerical Python）是一个开源的Python科学计算库，用于快速处理任意维度的数组。 Numpy支持常见的数组和矩阵操作。对于同样的数值计算任务，使用Numpy比直接使用Python要简洁的多。 Numpy使用ndarray对象来处理多维数组，该对象是一个快速而灵活的大数据容器。">
   
     <link rel="alternative" href="/atom.xml" title="Time Blog" type="application/atom+xml">
   
@@ -174,13 +174,69 @@
       
         <h1 id="numpy介绍"><a href="#numpy介绍" class="headerlink" title="numpy介绍"></a>numpy介绍</h1><p>Numpy（Numerical Python）是一个开源的Python科学计算库，用于快速处理任意维度的数组。</p>
 <p>Numpy支持常见的数组和矩阵操作。对于同样的数值计算任务，使用Numpy比直接使用Python要简洁的多。</p>
-<p>Numpy使用ndarray对象来处理多维数组，该对象是一个快速而灵活的大数据容器。</p>
+<p>Numpy使用ndarray对象来处理多维数组，该对象是一个快速而灵活的大数据容器。<br><a id="more"></a></p>
 <h1 id="numpy的优势"><a href="#numpy的优势" class="headerlink" title="numpy的优势"></a>numpy的优势</h1><ul>
 <li>内存块风格<br>numpy采用的是顺序存储，相比于python list的链式存储。在科学计算中，能减少很多遍历，加快运算速度。</li>
 <li>支持并行化运算</li>
 <li>效率远高于纯Python代码<br>numpy底层才用c语言编写，内部解除了GIL（全局解释器锁），其对数组的操作速度不受Python解释器的限制，所以，其效率远高于纯Python代码。</li>
 </ul>
-<h1 id="ndarray属性"><a href="#ndarray属性" class="headerlink" title="ndarray属性"></a>ndarray属性</h1><p>|属性名字 | 属性解释|<br>| ndarray.shape | 数组维度的元组|</p>
+<h1 id="ndarray属性"><a href="#ndarray属性" class="headerlink" title="ndarray属性"></a>ndarray属性</h1><table>
+<thead>
+<tr>
+<th>属性名字</th>
+<th>属性解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ndarray.shape</td>
+<td>数组维度的元组</td>
+</tr>
+<tr>
+<td>ndarray.ndim</td>
+<td>数组维数</td>
+</tr>
+<tr>
+<td>ndarray.size</td>
+<td>数组中的元素数量</td>
+</tr>
+<tr>
+<td>ndarray.itemsize</td>
+<td>一个数组元素的长度（字节）</td>
+</tr>
+<tr>
+<td>ndarray.dtype</td>
+<td>数组元素的类型</td>
+</tr>
+</tbody>
+</table>
+<h1 id="ndarray基本操作"><a href="#ndarray基本操作" class="headerlink" title="ndarray基本操作"></a>ndarray基本操作</h1><h2 id="生成数组"><a href="#生成数组" class="headerlink" title="生成数组"></a>生成数组</h2><ul>
+<li>生成0和1的数组<br>np.ones()<br>np.ones_like()</li>
+<li>从现有数组中生成<br>np.array – 深拷贝<br>np.asarray – 浅拷贝</li>
+<li>生成固定范围数组<br>np.linspace()<br>nun – 生成等间隔的多少个<br>np.arange()<br>step – 每间隔多少生成数据<br>np.logspace()<br>生成以10的N次幂的数据</li>
+</ul>
+<h2 id="生成随机数组"><a href="#生成随机数组" class="headerlink" title="生成随机数组"></a>生成随机数组</h2><ul>
+<li>正态分布<br>里面需要关注的参数:均值:u, 标准差:σ<br>u – 决定了这个图形的左右位置<br>σ – 决定了这个图形是瘦高还是矮胖<br>np.random.randn()<br>np.random.normal(0, 1, 100)</li>
+<li>均匀分布</li>
+<li>np.random.rand()<br>np.random.uniform(0, 1, 100)<br>np.random.randint(0, 10, 10)</li>
+</ul>
+<h2 id="数组索引"><a href="#数组索引" class="headerlink" title="数组索引"></a>数组索引</h2><p>直接进行索引,切片<br>对象[:, :] – 先行后列</p>
+<h2 id="数组形状改变"><a href="#数组形状改变" class="headerlink" title="数组形状改变"></a>数组形状改变</h2><p>对象.reshape()<br>没有进行行列互换,新产生一个ndarray<br>对象.resize()<br>没有进行行列互换,修改原来的ndarray<br>对象.T<br>进行了行列互换</p>
+<h2 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h2><p>np.unique(对象)</p>
+<h1 id="ndarray运算"><a href="#ndarray运算" class="headerlink" title="ndarray运算"></a>ndarray运算</h1><h2 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h2><p>通过&gt; , &lt; 等符号可以直接判断ndarray并进行赋值</p>
+<h2 id="通用判断函数"><a href="#通用判断函数" class="headerlink" title="通用判断函数"></a>通用判断函数</h2><ul>
+<li>np.all()</li>
+<li>np.any()</li>
+</ul>
+<h2 id="统计运算np-max"><a href="#统计运算np-max" class="headerlink" title="统计运算np.max()"></a>统计运算np.max()</h2><ul>
+<li>np.min()</li>
+<li>np.median()</li>
+<li>np.mean()</li>
+<li>np.std()</li>
+<li>np.var()</li>
+<li>np.argmax(axis=) — 最大元素对应的下标</li>
+<li>np.argmin(axis=) — 最小元素对应的下标</li>
+</ul>
 
       
 
@@ -396,11 +452,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Layout</a>
+                <a href="javascript:void(0)" class="js-tag color3">控件</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">控件</a>
+                <a href="javascript:void(0)" class="js-tag color2">Layout</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -409,10 +465,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -432,19 +484,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -464,11 +508,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color3">eclipse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">类集框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">映射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -492,19 +552,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">映射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">intent</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -516,7 +572,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+                <a href="javascript:void(0)" class="js-tag color3">sublime</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,15 +596,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">sublime</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C语言</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编译</a>
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
             
             <div class="clearfix"></div>
