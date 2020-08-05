@@ -4,14 +4,14 @@
 
     
   <url>
-    <loc>http://www.timewl.top/2020/02/01/numpy0201/</loc>
-    <lastmod>2020-08-01T08:55:08.704Z</lastmod>
+    <loc>http://www.timewl.top/2020/02/23/axis0223/</loc>
+    <lastmod>2020-08-05T08:28:39.142Z</lastmod>
     <data>
         <display>
-        <title>numpy0201</title>
-        <pubTime>2020-02-01T07:56:26.000Z</pubTime>
+        <title>Python之NumPy（axis=0 与axis=1）区分</title>
+        <pubTime>2020-02-23T09:12:41.000Z</pubTime>
         
-        <tag>机器学习</tag>
+        <tag>python</tag>
          
          
            
@@ -22,13 +22,47 @@
     
   <url>
     <loc>http://www.timewl.top/2020/01/22/matplotlib0122/</loc>
-    <lastmod>2020-08-01T08:01:43.199Z</lastmod>
+    <lastmod>2020-08-01T09:17:55.707Z</lastmod>
     <data>
         <display>
         <title>python之matplotlib</title>
         <pubTime>2020-01-22T07:31:20.000Z</pubTime>
         
-        <tag>机器学习</tag>
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.timewl.top/2020/02/01/numpy0201/</loc>
+    <lastmod>2020-08-01T09:17:54.786Z</lastmod>
+    <data>
+        <display>
+        <title>python之numpy</title>
+        <pubTime>2020-02-01T07:56:26.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.timewl.top/2020/02/06/numpy-pandas0206/</loc>
+    <lastmod>2020-08-01T09:17:53.612Z</lastmod>
+    <data>
+        <display>
+        <title>numpy和pandas的一些区别</title>
+        <pubTime>2020-02-06T09:03:46.000Z</pubTime>
+        
+        <tag>python</tag>
          
          
            

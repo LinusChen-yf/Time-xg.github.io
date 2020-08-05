@@ -9,20 +9,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.timewl.top">
-  <title>intent跳转Activity以及传递数据 | Time Blog</title>
+  <title>Python之NumPy（axis=0 与axis=1）区分 | Time Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="用Intent跳转Activity我们可以创建一个监听器，在监听器中创建一个Intent来跳转Activity和传输数据，用startActivity()来跳转到另一个Activity，再将一个控件创建一个点击事件来达到跳转Activity的效果。">
-<meta name="keywords" content="Android,Activity,intent">
+  <meta name="description" content="参考文章：https://www.cnblogs.com/rrttp/p/8028421.html 遇到问题1data = data.drop(labels=[&amp;quot;ma5&amp;quot;,&amp;quot;ma10&amp;quot;,&amp;quot;ma20&amp;quot;,&amp;quot;v_ma5&amp;quot;,&amp;quot;v_ma10&amp;quot;,&amp;quot;v_ma20&amp;quot;], axis=1) 当我执行">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="intent跳转Activity以及传递数据">
-<meta property="og:url" content="http://www.timewl.top/2017/12/28/intent1228/index.html">
+<meta property="og:title" content="Python之NumPy（axis=0 与axis=1）区分">
+<meta property="og:url" content="http://www.timewl.top/2020/02/23/axis0223/index.html">
 <meta property="og:site_name" content="Time Blog">
-<meta property="og:description" content="用Intent跳转Activity我们可以创建一个监听器，在监听器中创建一个Intent来跳转Activity和传输数据，用startActivity()来跳转到另一个Activity，再将一个控件创建一个点击事件来达到跳转Activity的效果。">
+<meta property="og:description" content="参考文章：https://www.cnblogs.com/rrttp/p/8028421.html 遇到问题1data = data.drop(labels=[&amp;quot;ma5&amp;quot;,&amp;quot;ma10&amp;quot;,&amp;quot;ma20&amp;quot;,&amp;quot;v_ma5&amp;quot;,&amp;quot;v_ma10&amp;quot;,&amp;quot;v_ma20&amp;quot;], axis=1) 当我执行">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2017-12-28T12:15:26.582Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2233157-b77105789e36c847.jpg">
+<meta property="og:updated_time" content="2020-08-05T08:28:39.142Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="intent跳转Activity以及传递数据">
-<meta name="twitter:description" content="用Intent跳转Activity我们可以创建一个监听器，在监听器中创建一个Intent来跳转Activity和传输数据，用startActivity()来跳转到另一个Activity，再将一个控件创建一个点击事件来达到跳转Activity的效果。">
+<meta name="twitter:title" content="Python之NumPy（axis=0 与axis=1）区分">
+<meta name="twitter:description" content="参考文章：https://www.cnblogs.com/rrttp/p/8028421.html 遇到问题1data = data.drop(labels=[&amp;quot;ma5&amp;quot;,&amp;quot;ma10&amp;quot;,&amp;quot;ma20&amp;quot;,&amp;quot;v_ma5&amp;quot;,&amp;quot;v_ma10&amp;quot;,&amp;quot;v_ma20&amp;quot;], axis=1) 当我执行">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2233157-b77105789e36c847.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Time Blog" type="application/atom+xml">
   
@@ -152,31 +154,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-intent1228" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-axis0223" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      intent跳转Activity以及传递数据
+      Python之NumPy（axis=0 与axis=1）区分
     </h1>
   
 
         
-        <a href="/2017/12/28/intent1228/" class="archive-article-date">
-  	<time datetime="2017-12-28T11:53:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-28</time>
+        <a href="/2020/02/23/axis0223/" class="archive-article-date">
+  	<time datetime="2020-02-23T09:12:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="用Intent跳转Activity"><a href="#用Intent跳转Activity" class="headerlink" title="用Intent跳转Activity"></a>用Intent跳转Activity</h2><p>我们可以创建一个监听器，在监听器中创建一个Intent来跳转Activity和传输数据，用startActivity()来跳转到另一个Activity，再将一个控件创建一个点击事件来达到跳转Activity的效果。</p>
-<a id="more"></a>
-<h2 id="用Intent传输数据"><a href="#用Intent传输数据" class="headerlink" title="用Intent传输数据"></a>用Intent传输数据</h2><p>类似与跳转Activity，不过是用putExtra()来存储数据，用getStringExtra()来提取数据</p>
-<h2 id="演示代码"><a href="#演示代码" class="headerlink" title="演示代码"></a>演示代码</h2><p>下面为上面两种Intent用法的演示代码：<br>MainActivity:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    //加载布局</span><br><span class="line">    setContentView(R.layout.mainlayout);</span><br><span class="line">    //寻找组件</span><br><span class="line">    </span><br><span class="line">    TextView t1 = (TextView)findViewById(R.id.textView3);</span><br><span class="line">    </span><br><span class="line">    Button button = (Button)findViewById(R.id.button);</span><br><span class="line"></span><br><span class="line">    //添加点击事件</span><br><span class="line">    button.setOnClickListener(new MyListener());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MyListener implements View.OnClickListener&#123;</span><br><span class="line">    @Override</span><br><span class="line">    //复写点击方法</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        //取值</span><br><span class="line">        String s1 = e1.getText().toString();</span><br><span class="line">        String s2 = e2.getText().toString();</span><br><span class="line">        //创建intent对象</span><br><span class="line">        Intent intent = new Intent();</span><br><span class="line">        //设置键值对</span><br><span class="line">        intent.putExtra(&quot;one&quot;,s1);</span><br><span class="line">        intent.putExtra(&quot;two&quot;,s2);</span><br><span class="line"></span><br><span class="line">        //设置跳转的activity</span><br><span class="line">        intent.setClass(getApplicationContext(),OtherActivity.class);</span><br><span class="line">        //启动activity</span><br><span class="line">        startActivity(intent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>OtherActivity:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class MyListener implements View.OnClickListener&#123;</span><br><span class="line">    @Override</span><br><span class="line">    //复写点击方法</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        //取值</span><br><span class="line">        String s1 = e1.getText().toString();</span><br><span class="line">        String s2 = e2.getText().toString();</span><br><span class="line">        //创建intent对象</span><br><span class="line">        Intent intent = new Intent();</span><br><span class="line">        //设置键值对</span><br><span class="line">        intent.putExtra(&quot;one&quot;,s1);</span><br><span class="line">        intent.putExtra(&quot;two&quot;,s2);</span><br><span class="line"></span><br><span class="line">        //设置跳转的activity</span><br><span class="line">        intent.setClass(getApplicationContext(),OtherActivity.class);</span><br><span class="line">        //启动activity</span><br><span class="line">        startActivity(intent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>参考文章：<a href="https://www.cnblogs.com/rrttp/p/8028421.html" target="_blank" rel="noopener">https://www.cnblogs.com/rrttp/p/8028421.html</a></p>
+<h1 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = data.drop(labels=[&quot;ma5&quot;,&quot;ma10&quot;,&quot;ma20&quot;,&quot;v_ma5&quot;,&quot;v_ma10&quot;,&quot;v_ma20&quot;], axis=1)</span><br></pre></td></tr></table></figure>
+<p>当我执行删除函数时 axis = 1 是按照列删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[[&apos;open&apos;, &apos;high&apos;]].apply(lambda x : x.max() - x.min(), axis=0)</span><br></pre></td></tr></table></figure></p>
+<p>当我执行自定运算时，发现axis = 0 是将列中的数据进行计算。那么axis = 1到底是按列还是按行呢？</p>
+<h1 id="axis理解"><a href="#axis理解" class="headerlink" title="axis理解"></a>axis理解</h1><p>也许简单的来记就是axis=0代表往跨行（down)，而axis=1代表跨列（across)，作为方法动作的副词<br><img src="https://upload-images.jianshu.io/upload_images/2233157-b77105789e36c847.jpg" alt=""></p>
+<p>换句话说:</p>
+<ul>
+<li>使用0值表示沿着每一列或行标签\索引值向下执行方法</li>
+<li>使用1值表示沿着每一行或者列标签模向执行对应的方法</li>
+</ul>
 
       
 
@@ -190,15 +197,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Activity</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">intent</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -254,7 +253,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.timewl.top/2017/12/28/intent1228/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.timewl.top/2020/02/23/axis0223/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -268,18 +267,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/12/30/menu1230/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Android中菜单控件
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/12/26/intent1226/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Android中Intent的使用</div>
+    <a href="/2020/02/06/numpy-pandas0206/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">numpy和pandas的一些区别</div>
       <i class="icon-circle-right"></i>
     </a>
   

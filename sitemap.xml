@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.timewl.top/2020/02/01/numpy0201/</loc>
+    <loc>http://www.timewl.top/2020/02/23/axis0223/</loc>
     
-    <lastmod>2020-08-01T08:55:08.704Z</lastmod>
+    <lastmod>2020-08-05T08:28:39.142Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.timewl.top/2020/01/22/matplotlib0122/</loc>
     
-    <lastmod>2020-08-01T08:01:43.199Z</lastmod>
+    <lastmod>2020-08-01T09:17:55.707Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.timewl.top/2020/02/01/numpy0201/</loc>
+    
+    <lastmod>2020-08-01T09:17:54.786Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.timewl.top/2020/02/06/numpy-pandas0206/</loc>
+    
+    <lastmod>2020-08-01T09:17:53.612Z</lastmod>
     
   </url>
   
