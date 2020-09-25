@@ -9,19 +9,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.timewl.top">
-  <title>Tag: 继承 | Time Blog</title>
+  <title>python只collections | Time Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
-<meta name="keywords" content="Time Blog,时光博客,JAVA,Pyhon,HTML,开发,编程,生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Time Blog">
-<meta property="og:url" content="http://www.timewl.top/tags/继承/index.html">
+  <meta name="description" content="今天碰到一个关于判断是否为字符串重排的算法题,发现一个用collections时间复杂度低的算法.">
+<meta name="keywords" content="算法,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python只collections">
+<meta property="og:url" content="http://www.timewl.top/2020/03/20/collections0320/index.html">
 <meta property="og:site_name" content="Time Blog">
-<meta property="og:description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
+<meta property="og:description" content="今天碰到一个关于判断是否为字符串重排的算法题,发现一个用collections时间复杂度低的算法.">
 <meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-09-25T11:33:31.666Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Time Blog">
-<meta name="twitter:description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
+<meta name="twitter:title" content="python只collections">
+<meta name="twitter:description" content="今天碰到一个关于判断是否为字符串重排的算法题,发现一个用collections时间复杂度低的算法.">
   
     <link rel="alternative" href="/atom.xml" title="Time Blog" type="application/atom+xml">
   
@@ -151,72 +152,157 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-collections0320" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/23/eclipse1223/" class="archive-article-date">
-  	<time datetime="2017-12-23T02:15:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-23</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/23/eclipse1223/">Java中继承无参数构造函数出错</a>
+    <h1 class="article-title" itemprop="name">
+      python只collections
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/03/20/collections0320/" class="archive-article-date">
+  	<time datetime="2020-03-20T11:20:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天碰到一个关于判断是否为字符串重排的算法题,发现一个用collections时间复杂度低的算法.<br><a id="more"></a><br>算法如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import collections;</span><br><span class="line">a = collections.Counter(s1)</span><br><span class="line">b = collections.Counter(s2)</span><br><span class="line">if len(a) != len(b):</span><br><span class="line">    return False</span><br><span class="line">for x in a:</span><br><span class="line">    if a[x] != b.get(x,0):</span><br><span class="line">        return False</span><br><span class="line">return True</span><br></pre></td></tr></table></figure>
+<p>函数的解释:</p>
+<p>进行Counter后生成的对象是各个元素和各个元素出现的次数.</p>
+<p>通过遍历,遍历的元素是按顺序出现的元素,例如:’aaec’,遍历出来的元素的a,e,c</p>
+<p>对象[遍历的元素] = 该元素出现的次数</p>
+<p>其他的对象.get(遍历的元素) = 这个对象中该元素出现的次数.</p>
+<p>通过这个collections这个包的函数,可以快速计算出两个各个元素出现的次数,通过比较可以判断是否是字符串重排.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">eclipse</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">继承</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">构造函数</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.timewl.top/2020/03/20/collections0320/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/02/23/axis0223/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python之NumPy（axis=0 与axis=1）区分</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -239,9 +325,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
