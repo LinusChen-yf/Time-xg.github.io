@@ -9,20 +9,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.timewl.top">
-  <title>Android中的LinearLayout布局 | Time Blog</title>
+  <title>python只collections | Time Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="LinearLayout就是线性布局，要么横着排列，要么竖直排列 LinearLayout一些参数orientation： 控制布局的水平和竖直，水平为horizontal，竖直为vertical。width（宽度）height（高度）：有fill_parent或者match_parent(填充父容器)和wrap_content（包裹内容）这几种。">
-<meta name="keywords" content="Android,Layout">
+  <meta name="description" content="今天碰到一个关于判断是否为字符串重排的算法题,发现一个用collections时间复杂度低的算法.">
+<meta name="keywords" content="算法,python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android中的LinearLayout布局">
-<meta property="og:url" content="http://www.timewl.top/2017/12/31/LinearLayout1231/index.html">
+<meta property="og:title" content="python只collections">
+<meta property="og:url" content="http://www.timewl.top/2020/09/25/collections0320/index.html">
 <meta property="og:site_name" content="Time Blog">
-<meta property="og:description" content="LinearLayout就是线性布局，要么横着排列，要么竖直排列 LinearLayout一些参数orientation： 控制布局的水平和竖直，水平为horizontal，竖直为vertical。width（宽度）height（高度）：有fill_parent或者match_parent(填充父容器)和wrap_content（包裹内容）这几种。">
+<meta property="og:description" content="今天碰到一个关于判断是否为字符串重排的算法题,发现一个用collections时间复杂度低的算法.">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2017-12-31T09:05:00.303Z">
+<meta property="og:updated_time" content="2020-09-25T11:32:28.165Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android中的LinearLayout布局">
-<meta name="twitter:description" content="LinearLayout就是线性布局，要么横着排列，要么竖直排列 LinearLayout一些参数orientation： 控制布局的水平和竖直，水平为horizontal，竖直为vertical。width（宽度）height（高度）：有fill_parent或者match_parent(填充父容器)和wrap_content（包裹内容）这几种。">
+<meta name="twitter:title" content="python只collections">
+<meta name="twitter:description" content="今天碰到一个关于判断是否为字符串重排的算法题,发现一个用collections时间复杂度低的算法.">
   
     <link rel="alternative" href="/atom.xml" title="Time Blog" type="application/atom+xml">
   
@@ -152,28 +152,34 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-LinearLayout1231" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-collections0320" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Android中的LinearLayout布局
+      python只collections
     </h1>
   
 
         
-        <a href="/2017/12/31/LinearLayout1231/" class="archive-article-date">
-  	<time datetime="2017-12-31T03:20:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-31</time>
+        <a href="/2020/09/25/collections0320/" class="archive-article-date">
+  	<time datetime="2020-09-25T11:20:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>LinearLayout就是线性布局，要么横着排列，要么竖直排列</p>
-<h2 id="LinearLayout一些参数"><a href="#LinearLayout一些参数" class="headerlink" title="LinearLayout一些参数"></a>LinearLayout一些参数</h2><p>orientation： 控制布局的水平和竖直，水平为horizontal，竖直为vertical。<br>width（宽度）height（高度）：有fill_parent或者match_parent(填充父容器)和wrap_content（包裹内容）这几种。<br><a id="more"></a><br>id：这个组件的资源id<br>text：组件的文本<br>grivity:控制控件内容的位置，居中居右之类的。<br>background:为控件设置个背景颜色，或直接用颜色覆盖。<br>padding：调整内容和边框之间距离<br>weight：控件之间的比重<br>singleLine：控件内容换行</p>
+        <p>今天碰到一个关于判断是否为字符串重排的算法题,发现一个用collections时间复杂度低的算法.<br><a id="more"></a><br>算法如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import collections;</span><br><span class="line">a = collections.Counter(s1)</span><br><span class="line">b = collections.Counter(s2)</span><br><span class="line">if len(a) != len(b):</span><br><span class="line">    return False</span><br><span class="line">for x in a:</span><br><span class="line">    if a[x] != b.get(x,0):</span><br><span class="line">        return False</span><br><span class="line">return True</span><br></pre></td></tr></table></figure>
+<p>函数的解释:</p>
+<p>进行Counter后生成的对象是各个元素和各个元素出现的次数.</p>
+<p>通过遍历,遍历的元素是按顺序出现的元素,例如:’aaec’,遍历出来的元素的a,e,c</p>
+<p>对象[遍历的元素] = 该元素出现的次数</p>
+<p>其他的对象.get(遍历的元素) = 这个对象中该元素出现的次数.</p>
+<p>通过这个collections这个包的函数,可以快速计算出两个各个元素出现的次数,通过比较可以判断是否是字符串重排.</p>
 
       
 
@@ -187,11 +193,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Layout</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -247,7 +253,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.timewl.top/2017/12/31/LinearLayout1231/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.timewl.top/2020/09/25/collections0320/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -261,18 +267,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/12/31/TableLayout1231/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Android中TableLayout布局
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/12/30/Activity1230/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Activity生命周期</div>
+    <a href="/2020/02/23/axis0223/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python之NumPy（axis=0 与axis=1）区分</div>
       <i class="icon-circle-right"></i>
     </a>
   
