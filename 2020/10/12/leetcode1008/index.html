@@ -9,20 +9,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.timewl.top">
-  <title>Android中的进度条控件 | Time Blog</title>
+  <title>奇数长度子数组的和 | Time Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="进度条分为两种一种是圆形旋转的进度，另一种是直线进度条（可以设置第二进度）进度条的一些方法：123setVisibility(View.VISIBLE);//设置进度条是否可见View.VISIBLE为可见，View.GONE不可见setProgress(i);//设置进度条进度setSecondaryProgress(i + 10);//设置第二进度条进度（圆形进度条不可设置）">
-<meta name="keywords" content="Android,控件">
+  <meta name="description" content="题目:给你一个正整数数组 arr ，请你计算所有可能的奇数长度子数组的和。 子数组 定义为原数组中的一个连续子序列。 请你返回 arr 中 所有奇数长度子数组的和  思路:这题如果用暴力枚举解法,时间复杂度会很高.就想着如果去统计一个元素在不同奇数数组中组合的种类来计算奇数数组之和. 所以大概有了个思路:  odd奇数，even偶数 对于每个元素i(数组中下标为i)来说，要构成奇数长度的子数组即">
+<meta name="keywords" content="Time Blog,时光博客,JAVA,Pyhon,HTML,开发,编程,生活">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android中的进度条控件">
-<meta property="og:url" content="http://www.timewl.top/2018/01/07/ProgressBar0107/index.html">
+<meta property="og:title" content="奇数长度子数组的和">
+<meta property="og:url" content="http://www.timewl.top/2020/10/12/leetcode1008/index.html">
 <meta property="og:site_name" content="Time Blog">
-<meta property="og:description" content="进度条分为两种一种是圆形旋转的进度，另一种是直线进度条（可以设置第二进度）进度条的一些方法：123setVisibility(View.VISIBLE);//设置进度条是否可见View.VISIBLE为可见，View.GONE不可见setProgress(i);//设置进度条进度setSecondaryProgress(i + 10);//设置第二进度条进度（圆形进度条不可设置）">
+<meta property="og:description" content="题目:给你一个正整数数组 arr ，请你计算所有可能的奇数长度子数组的和。 子数组 定义为原数组中的一个连续子序列。 请你返回 arr 中 所有奇数长度子数组的和  思路:这题如果用暴力枚举解法,时间复杂度会很高.就想着如果去统计一个元素在不同奇数数组中组合的种类来计算奇数数组之和. 所以大概有了个思路:  odd奇数，even偶数 对于每个元素i(数组中下标为i)来说，要构成奇数长度的子数组即">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2018-01-07T13:46:37.163Z">
+<meta property="og:updated_time" content="2020-10-12T06:36:58.367Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android中的进度条控件">
-<meta name="twitter:description" content="进度条分为两种一种是圆形旋转的进度，另一种是直线进度条（可以设置第二进度）进度条的一些方法：123setVisibility(View.VISIBLE);//设置进度条是否可见View.VISIBLE为可见，View.GONE不可见setProgress(i);//设置进度条进度setSecondaryProgress(i + 10);//设置第二进度条进度（圆形进度条不可设置）">
+<meta name="twitter:title" content="奇数长度子数组的和">
+<meta name="twitter:description" content="题目:给你一个正整数数组 arr ，请你计算所有可能的奇数长度子数组的和。 子数组 定义为原数组中的一个连续子序列。 请你返回 arr 中 所有奇数长度子数组的和  思路:这题如果用暴力枚举解法,时间复杂度会很高.就想着如果去统计一个元素在不同奇数数组中组合的种类来计算奇数数组之和. 所以大概有了个思路:  odd奇数，even偶数 对于每个元素i(数组中下标为i)来说，要构成奇数长度的子数组即">
   
     <link rel="alternative" href="/atom.xml" title="Time Blog" type="application/atom+xml">
   
@@ -152,30 +152,50 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ProgressBar0107" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-leetcode1008" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Android中的进度条控件
+      奇数长度子数组的和
     </h1>
   
 
         
-        <a href="/2018/01/07/ProgressBar0107/" class="archive-article-date">
-  	<time datetime="2018-01-07T09:07:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
+        <a href="/2020/10/12/leetcode1008/" class="archive-article-date">
+  	<time datetime="2020-10-12T06:31:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>进度条分为两种一种是圆形旋转的进度，另一种是直线进度条（可以设置第二进度）<br>进度条的一些方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setVisibility(View.VISIBLE);//设置进度条是否可见View.VISIBLE为可见，View.GONE不可见</span><br><span class="line">setProgress(i);//设置进度条进度</span><br><span class="line">setSecondaryProgress(i + 10);//设置第二进度条进度（圆形进度条不可设置）</span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<h2 id="圆形进度"><a href="#圆形进度" class="headerlink" title="圆形进度"></a>圆形进度</h2><p>圆形进度的一些参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">style=&quot;?android:attr/progressBarStyle&quot; //为进度条定义圆形进度外观</span><br><span class="line">android:visibility=&quot;gone&quot;//设置进度条的是否可见(可见为visible，不可见为gone)</span><br><span class="line">android:max=&quot;100&quot;//设置进度条总进度的最大值</span><br></pre></td></tr></table></figure></p>
-<h2 id="直线进度条"><a href="#直线进度条" class="headerlink" title="直线进度条"></a>直线进度条</h2><p>直线进度条的一些参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">style=&quot;?android:attr/progressBarStyleHorizontal&quot;//为进度条定义圆形进度外观</span><br><span class="line">android:visibility=&quot;gone&quot;//设置进度条的是否可见(可见为visible，不可见为gone)</span><br><span class="line">android:max=&quot;100&quot;//设置进度条总进度的最大值</span><br></pre></td></tr></table></figure></p>
+        <p>题目:<br>给你一个正整数数组 arr ，请你计算所有可能的奇数长度子数组的和。</p>
+<p>子数组 定义为原数组中的一个连续子序列。</p>
+<p>请你返回 arr 中 所有奇数长度子数组的和 </p>
+<p>思路:<br>这题如果用暴力枚举解法,时间复杂度会很高.就想着如果去统计一个元素在不同奇数数组中组合的种类来计算奇数数组之和.</p>
+<p>所以大概有了个思路:</p>
+<ul>
+<li>odd奇数，even偶数</li>
+<li>对于每个元素i(数组中下标为i)来说，要构成奇数长度的子数组<br>即 i左边的元素个数left+i本身自己一个+右边元素的个数right=奇数<br>即 left+right=偶数</li>
+<li>满足a+b=偶数就只有两种情况<ol>
+<li>奇数+奇数=偶数</li>
+<li>偶数+偶数=偶数</li>
+</ol>
+</li>
+<li><ol>
+<li>所以只需要求得i左边可以选择奇数长度的可能有多少种，即left_odd,同样求右边奇数right_odd就可以求出策略1有多少种可能</li>
+<li>所以只需要求得i左边可以选择偶数长度的可能有多少种，即left_odd,同样求右边偶数right_odd就可以求出策略1有多少种可能，注意0也算选择的一种可能</li>
+</ol>
+</li>
+<li>即元素i在所有奇数长度子数组出现的次数总和是<br>left_odd<em>right_odd+left_even</em>right_even</li>
+<li>元素i左边元素共有i个，右边元素共有siz-i-1个</li>
+</ul>
+<p>代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sum = 0</span><br><span class="line">for i in range(len(arr)):</span><br><span class="line">    left = i + 1</span><br><span class="line">    rigth = len(arr) - i</span><br><span class="line">    left_even = math.floor((left + 1) / 2)</span><br><span class="line">    left_odd = math.floor(left / 2)</span><br><span class="line">    right_even = math.floor((rigth + 1) / 2)</span><br><span class="line">    right_odd = math.floor(rigth / 2)</span><br><span class="line">    sum += (left_even * right_even + left_odd * right_odd) * arr[i]</span><br><span class="line">return int(sum)</span><br></pre></td></tr></table></figure>
+<p>时间复杂度为O(n)</p>
 
       
 
@@ -184,21 +204,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">控件</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -249,7 +254,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.timewl.top/2018/01/07/ProgressBar0107/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.timewl.top/2020/10/12/leetcode1008/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -263,18 +268,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/01/11/simpleAdapt/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Android中SimpleAdapt适配器
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/01/07/checkbox0107/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Android中选择控件</div>
+    <a href="/2020/03/20/collections0320/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python只collections</div>
       <i class="icon-circle-right"></i>
     </a>
   
