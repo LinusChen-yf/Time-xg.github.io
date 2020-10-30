@@ -4,13 +4,32 @@
 
     
   <url>
+    <loc>http://www.timewl.top/2020/10/30/20201030Adapter-AndroidQ/</loc>
+    <lastmod>2020-10-30T09:45:14.483Z</lastmod>
+    <data>
+        <display>
+        <title>AndroidQ文件读取适配</title>
+        <pubTime>2020-10-30T09:42:19.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.timewl.top/2020/10/12/leetcode1008/</loc>
-    <lastmod>2020-10-12T06:36:58.367Z</lastmod>
+    <lastmod>2020-10-12T06:38:25.553Z</lastmod>
     <data>
         <display>
         <title>奇数长度子数组的和</title>
         <pubTime>2020-10-12T06:31:20.000Z</pubTime>
         
+        <tag>算法</tag>
+         
          
            
         </display>
@@ -491,9 +510,9 @@
         
         <tag>Android</tag>
          
-        <tag>Android studio</tag>
-         
         <tag>JAVA</tag>
+         
+        <tag>Android studio</tag>
          
          
            

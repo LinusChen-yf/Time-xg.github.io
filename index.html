@@ -153,6 +153,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-20201030Adapter-AndroidQ" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/30/20201030Adapter-AndroidQ/">AndroidQ文件读取适配</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/30/20201030Adapter-AndroidQ/" class="archive-article-date">
+  	<time datetime="2020-10-30T09:42:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于Android Q 推出新的文件管理方式。导致开发者无法通过路径来直接访问文件夹，导致获取不到系统的文件目录。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>FileScanner currentDir.list() in line:110 获取不到列表，为null</p>
+<h2 id="预想解决方法"><a href="#预想解决方法" class="headerlink" title="预想解决方法"></a>预想解决方法</h2><ol>
+<li><p>由google官方文档来看访问文件管理和媒体创建应用通常在目录层次结构中管理文件组，可以调用<code>ACTION_OPEN_DOCUMENT_TREE</code>的intent以允许用户授权整个目录的访问权限。开发者可以通过onActivityResult()获取到目录文件的Uri，通过Uri来遍历目录。</p>
+</li>
+<li><p>由于开发者反馈，Android在Android 11中又可以运行访问文件。可以将compileSdkVersion设置为最新版本的30, 这样可以通过getExternalStorageDirectory()方法获取文件的目录</p>
+</li>
+</ol>
+        
+          <a class="article-more-a" href="/2020/10/30/20201030Adapter-AndroidQ/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/30/20201030Adapter-AndroidQ/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-leetcode1008" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -205,6 +288,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -887,88 +981,6 @@
 
 
   
-    <article id="post-jurisdiction0330" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/30/jurisdiction0330/">安卓文件权限介绍</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/30/jurisdiction0330/" class="archive-article-date">
-  	<time datetime="2018-03-30T06:18:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="安卓的权限"><a href="#安卓的权限" class="headerlink" title="安卓的权限"></a>安卓的权限</h3><p>安卓的权限是十位制的，是Linux上的权限表示的方法</p>
-<h3 id="各个位的意义"><a href="#各个位的意义" class="headerlink" title="各个位的意义"></a>各个位的意义</h3><h4 id="第一位"><a href="#第一位" class="headerlink" title="第一位"></a>第一位</h4><p>表示文件的类型，如果第一位是d代表它是一个文件目录，<br>如果第一位是-代表它是一个普通的文件</p>
-<h4 id="后九位"><a href="#后九位" class="headerlink" title="后九位"></a>后九位</h4><p>后九位每三个三个为一组，分为三组。<br>第一组代表的是当前用户。<br>第二组代表的是当前用户所在组。<br>第三组代表的是其他用户。<br>r代表可读，w代表可写，x代表可执行，-代表没有权限。<br>有权限为二进制的1，无权限为二进制的0.</p>
-<h3 id="生成文件的模式"><a href="#生成文件的模式" class="headerlink" title="生成文件的模式"></a>生成文件的模式</h3><p>MODE_PRIVATE代表私有的<br>MODE_APEEND代表可追加的<br>MODE_READABLE代表其他用户可以读<br>MODE_WRITEABLE代表其他用户可写</p>
-<h3 id="改变文件的权限"><a href="#改变文件的权限" class="headerlink" title="改变文件的权限"></a>改变文件的权限</h3><p>1.进入安卓调试终端adb shell<br>2.进入所要修改文件权限的文件夹 cd 文件夹  ls是显示当前目录<br>3.利用chmod命令修改文件的权限,例如:chmod 777 test.txt 意思是修改三组文件权限为777,7代表的是每组文件的二进制数.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">权限</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/30/jurisdiction0330/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1078,19 +1090,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ACM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android studio</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1106,11 +1110,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android studio</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">密码学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数字地址</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PDF</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1150,11 +1178,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">映射</a>
+                <a href="javascript:void(0)" class="js-tag color3">集合</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">集合</a>
+                <a href="javascript:void(0)" class="js-tag color3">映射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1166,27 +1194,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CTF</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">密码学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数字地址</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PDF</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">权限</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1199,14 +1219,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">编译</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">

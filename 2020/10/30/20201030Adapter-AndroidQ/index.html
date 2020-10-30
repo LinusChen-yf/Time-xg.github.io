@@ -9,19 +9,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.timewl.top">
-  <title>Tag: 编译 | Time Blog</title>
+  <title>AndroidQ文件读取适配 | Time Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
-<meta name="keywords" content="Time Blog,时光博客,JAVA,Pyhon,HTML,开发,编程,生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Time Blog">
-<meta property="og:url" content="http://www.timewl.top/tags/编译/index.html">
+  <meta name="description" content="前言由于Android Q 推出新的文件管理方式。导致开发者无法通过路径来直接访问文件夹，导致获取不到系统的文件目录。 问题FileScanner currentDir.list() in line:110 获取不到列表，为null 预想解决方法 由google官方文档来看访问文件管理和媒体创建应用通常在目录层次结构中管理文件组，可以调用ACTION_OPEN_DOCUMENT_TREE的inte">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AndroidQ文件读取适配">
+<meta property="og:url" content="http://www.timewl.top/2020/10/30/20201030Adapter-AndroidQ/index.html">
 <meta property="og:site_name" content="Time Blog">
-<meta property="og:description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
+<meta property="og:description" content="前言由于Android Q 推出新的文件管理方式。导致开发者无法通过路径来直接访问文件夹，导致获取不到系统的文件目录。 问题FileScanner currentDir.list() in line:110 获取不到列表，为null 预想解决方法 由google官方文档来看访问文件管理和媒体创建应用通常在目录层次结构中管理文件组，可以调用ACTION_OPEN_DOCUMENT_TREE的inte">
 <meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-10-30T09:45:14.483Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Time Blog">
-<meta name="twitter:description" content="时光博客 Time Blog JAVA,HTML,Pyhon,博客技术分享与学习。乐于分享。">
+<meta name="twitter:title" content="AndroidQ文件读取适配">
+<meta name="twitter:description" content="前言由于Android Q 推出新的文件管理方式。导致开发者无法通过路径来直接访问文件夹，导致获取不到系统的文件目录。 问题FileScanner currentDir.list() in line:110 获取不到列表，为null 预想解决方法 由google官方文档来看访问文件管理和媒体创建应用通常在目录层次结构中管理文件组，可以调用ACTION_OPEN_DOCUMENT_TREE的inte">
   
     <link rel="alternative" href="/atom.xml" title="Time Blog" type="application/atom+xml">
   
@@ -151,72 +152,158 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-20201030Adapter-AndroidQ" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/21/sublime1221/" class="archive-article-date">
-  	<time datetime="2017-12-21T14:05:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/21/sublime1221/">设置在sublime Text上编译运行程序</a>
+    <h1 class="article-title" itemprop="name">
+      AndroidQ文件读取适配
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/10/30/20201030Adapter-AndroidQ/" class="archive-article-date">
+  	<time datetime="2020-10-30T09:42:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于Android Q 推出新的文件管理方式。导致开发者无法通过路径来直接访问文件夹，导致获取不到系统的文件目录。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>FileScanner currentDir.list() in line:110 获取不到列表，为null</p>
+<h2 id="预想解决方法"><a href="#预想解决方法" class="headerlink" title="预想解决方法"></a>预想解决方法</h2><ol>
+<li><p>由google官方文档来看访问文件管理和媒体创建应用通常在目录层次结构中管理文件组，可以调用<code>ACTION_OPEN_DOCUMENT_TREE</code>的intent以允许用户授权整个目录的访问权限。开发者可以通过onActivityResult()获取到目录文件的Uri，通过Uri来遍历目录。</p>
+</li>
+<li><p>由于开发者反馈，Android在Android 11中又可以运行访问文件。可以将compileSdkVersion设置为最新版本的30, 这样可以通过getExternalStorageDirectory()方法获取文件的目录</p>
+</li>
+</ol>
+<a id="more"></a>
+<h1 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h1><p>方法二： 一开始觉得方法2用户体验更好一些，所以去试了下方法2。但是获取路径下的文件时候<code>file.listFiles()</code>返回null了。官方下载的demo就可以获取到，想不通。</p>
+<p>裂开了，没有发现官方的demo在application中多了这一行<code>android:requestLegacyExternalStorage=&quot;true</code>“。我以为权限都是在uses-permission标签下了。添加了<code>android:requestLegacyExternalStorage=&quot;true&quot;</code>可以正常获取文件了。这行代码应该是请求外部存储器的全部目录。<br>`</p>
+<p>方法一： 通过请求文件管理权限来获取根目录的Uri,通过Uri来访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">private static final int READ_REQUEST_CODE = 42;</span><br><span class="line"> </span><br><span class="line">  Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);</span><br><span class="line">  intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION |</span><br><span class="line">  Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);</span><br><span class="line">  startActivityForResult(intent, READ_REQUEST_CODE);</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public void onActivityResult(int requestCode, int resultCode,Intent resultData) &#123;</span><br><span class="line">        //使用resultdata.getdata ( )提取该URI</span><br><span class="line">        if (requestCode == READ_REQUEST_CODE &amp;&amp; resultCode == Activity.RESULT_OK) &#123;</span><br><span class="line">            Uri uri = null;</span><br><span class="line">            if (resultData != null) &#123;</span><br><span class="line">                uri = resultData.getData();</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void forFile(Uri uri)&#123;</span><br><span class="line">        //获取文件夹下所有文件</span><br><span class="line">        File files = DocumentFile.fromTreeUri(this, uri).listFiles();</span><br><span class="line">        if(files != null)</span><br><span class="line">            //遍例所有文件</span><br><span class="line">            files.forEach &#123; </span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">sublime</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C语言</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编译</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.timewl.top/2020/10/30/20201030Adapter-AndroidQ/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/10/12/leetcode1008/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">奇数长度子数组的和</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -239,9 +326,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
