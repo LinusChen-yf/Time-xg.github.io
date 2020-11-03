@@ -153,6 +153,179 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-20201102AndroidQ-Meida" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/03/20201102AndroidQ-Meida/">AndroidQ的文件存储</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/03/20201102AndroidQ-Meida/" class="archive-article-date">
+  	<time datetime="2020-11-03T10:16:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于AndroidQ开始，google更加重视App的隐私等内容，所以对存储进行了重新的定义。</p>
+<p>主要分为两大部分的存储：</p>
+<ul>
+<li><p>属于App自己包名下的私有文件 Android/data/package（不需要读取权限）</p>
+</li>
+<li><p>公有目录下的媒体文件 如music、DCIM、Download等</p>
+</li>
+</ul>
+<p>这种方式限制了APP随便在更目录乱建目录，同时应用在卸载时也同时删除包名下的文件，防止了App在卸载之后的残留。同时也极大的保证用户的隐私。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="私有目录"><a href="#私有目录" class="headerlink" title="私有目录"></a>私有目录</h3><p>首先是读写私有目录的文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 内部存储路径 data/data/packagename  不需要存储权限</span><br><span class="line">     String insidePath = getFilesDir().getAbsolutePath();</span><br><span class="line">     // 外部cache存储路径 Android/data/packagename/cache  不需要存储权限</span><br><span class="line">     String cach_paht = getExternalCacheDir().getAbsolutePath();</span><br><span class="line">     // 在外部file文件夹中  Android/data/packagename/files/my file name  不需要存储权限</span><br><span class="line">     String test_path = getExternalFilesDir(&quot;test&quot;).getAbsolutePath();</span><br></pre></td></tr></table></figure>
+<p>外面可以通过这三个方法获取到内部存储和外部存储和外部cache等路径。通过观察getExternalFilesDir(String type)的源代码，我们可以发现这个方法的参数虽然是个tpye的字符串，官方也提供了一些属性。</p>
+<p><img src="https://s1.ax1x.com/2020/11/02/BBuBZ9.png" alt=""></p>
+<p>但是这字符串并不受枚举的约束，我们可以自定义一种type，在包名下创建一个自定义文件名的文件夹。</p>
+<p>拿到文件路径后，我们可以直接通过File来创建文件，通过IO留直接进行读写操作非常的方便。</p>
+<p>写操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">if (existSDCard())&#123;</span><br><span class="line">                    file = new File(test_path,&quot;a.txt&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">                else &#123;</span><br><span class="line">                    file = new File(insidePath,&quot;a.txt&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">                try &#123;</span><br><span class="line">                    fos = new FileOutputStream(file);</span><br><span class="line">                    fos.write(&quot;test storage&quot;.getBytes());</span><br><span class="line">                    fos.flush();</span><br><span class="line"></span><br><span class="line">                &#125; catch (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                finally &#123;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        fos.close();</span><br><span class="line">                    &#125; catch (IOException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure></p>
+<p>读操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">if (existSDCard())&#123;</span><br><span class="line">                    file = new File(test_path,&quot;a.txt&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">                else &#123;</span><br><span class="line">                    file = new File(insidePath,&quot;a.txt&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">                try &#123;</span><br><span class="line"></span><br><span class="line">                    FileInputStream fis = new FileInputStream(file);</span><br><span class="line">                    BufferedInputStream bis=new BufferedInputStream(fis);</span><br><span class="line">                    String content=&quot;&quot;;</span><br><span class="line">                    //自定义缓冲区</span><br><span class="line">                    byte[] buffer=new byte[1024];</span><br><span class="line">                    int flag=0;</span><br><span class="line">                    while((flag=bis.read(buffer))!=-1)&#123;</span><br><span class="line">                        content+=new String(buffer, 0, flag);</span><br><span class="line">                    &#125;</span><br><span class="line">                    //关闭的时候只需要关闭最外层的流就行了</span><br><span class="line">                    bis.close();</span><br><span class="line">                    tv_content.setText(content);</span><br><span class="line">                &#125; catch (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="共有目录"><a href="#共有目录" class="headerlink" title="共有目录"></a>共有目录</h3><p>共有目录主要是通过google的MediaStore这个api来获取公共资源目录的api来访问。</p>
+<p>例如：获取创建一张在DCIM/TEST下创建一张图片：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">private void createImageFile() &#123;</span><br><span class="line">    // 通过Media获取外部存储公共目录的Uri</span><br><span class="line">    Uri contentUri = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL);</span><br><span class="line">    // 创建Contentvalues 并放入文件属性</span><br><span class="line">    ContentValues contentValues = new ContentValues();</span><br><span class="line">    long dateTaken = System.currentTimeMillis();</span><br><span class="line">    contentValues.put(MediaStore.Images.Media.DATE_TAKEN, dateTaken);</span><br><span class="line">    contentValues.put(MediaStore.Images.Media.DESCRIPTION, &quot;创建的第一张图片&quot;);</span><br><span class="line">    contentValues.put(MediaStore.Images.Media.IS_PRIVATE, 1);</span><br><span class="line">    contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, &quot;test&quot;);</span><br><span class="line">    contentValues.put(MediaStore.Images.Media.MIME_TYPE, &quot;image/png&quot;);</span><br><span class="line">    contentValues.put(MediaStore.Images.Media.TITLE, &quot;图片&quot;);</span><br><span class="line">    if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.Q) &#123;</span><br><span class="line">        //注意MediaStore.Downloads.RELATIVE_PATH需要targetVersion=29,</span><br><span class="line">        //故该方法只可在Android10的手机上执行</span><br><span class="line">        contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, &quot;DCIM/test&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    long dateAdded = System.currentTimeMillis();</span><br><span class="line">    contentValues.put(MediaStore.Images.Media.DATE_ADDED, dateAdded);</span><br><span class="line">    long dateModified = System.currentTimeMillis();</span><br><span class="line">    contentValues.put(MediaStore.Images.Media.DATE_MODIFIED, dateModified);</span><br><span class="line">    // 向外部存储的uir插入文件信息 获取文件uri</span><br><span class="line">    Uri insert = getContentResolver().insert(contentUri, contentValues);</span><br><span class="line">    Log.d(TAG, &quot;createFile: url : &quot; + insert);</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">        //通过uri打开IO流  对文件进行写入操作</span><br><span class="line">        OutputStream outputStream = getContentResolver().openOutputStream(insert);</span><br><span class="line">        Bitmap bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888);</span><br><span class="line">        bitmap.compress(Bitmap.CompressFormat.PNG, 90, outputStream);</span><br><span class="line">        outputStream.write(33);</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;finally &#123;</span><br><span class="line">         //showImg(insert);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/03/20201102AndroidQ-Meida/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20201103CustonView" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/03/20201103CustonView/">Android获取自定义控件对象为null的解决</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/03/20201103CustonView/" class="archive-article-date">
+  	<time datetime="2020-11-03T10:16:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天写自定义控件时，因为是在Actity的布局中引用这个控件，在Fragment中使用。通过getActivity().findViewById()来获取这个控件的对象，可是获得的都是null。</p>
+<p>刚开始怀疑是Acitivity为空，通过调试发现Activity是存在的。而且如果我去获取其他官方控件的对象获取到了。那应该就是自定义控件的问题了，看来看去让我百思不得其解。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>通过网上搜索发现了问题，原来是我自定义控件时，为将attr属性传入super里。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public CustomTitleBar(Context context, AttributeSet attrs) &#123;</span><br><span class="line">    super(context);</span><br><span class="line">    initView(context,attrs);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过修改super为<code>super(context,attrs);</code>。成功获取到自定义的对象。</p>
+<p>参考链接： <a href="https://blog.csdn.net/satan_vip/article/details/84285908" target="_blank" rel="noopener">https://blog.csdn.net/satan_vip/article/details/84285908</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/03/20201103CustonView/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20201030Adapter-AndroidQ" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -829,161 +1002,9 @@
 
 
   
-    <article id="post-sortalgorithm0626" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/26/sortalgorithm0626/">排序算法学习</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/26/sortalgorithm0626/" class="archive-article-date">
-  	<time datetime="2018-06-26T02:41:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一个好的排序算法能大大提高排序的速度，现在来学习一些常见的排序算法<br>
-        
-          <a class="article-more-a" href="/2018/06/26/sortalgorithm0626/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/26/sortalgorithm0626/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SharePreferences" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/SharePreferences/">Android利用SharePredferences来存储数据</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/SharePreferences/" class="archive-article-date">
-  	<time datetime="2018-04-13T04:19:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是SharedPreferences"><a href="#什么是SharedPreferences" class="headerlink" title="什么是SharedPreferences?"></a>什么是SharedPreferences?</h3><p>sharedPreferences类提供了一个通用 的框架，以便保存和检索原始数据的永久键值对。SharedPreferences可以来保存的任何原始数据：布尔值、浮点值、整型值、长整型和字符串。此数据跨多个用户会话永久保留。<br>
-        
-          <a class="article-more-a" href="/2018/04/13/SharePreferences/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/SharePreferences/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1082,11 +1103,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Layout</a>
+                <a href="javascript:void(0)" class="js-tag color3">控件</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">控件</a>
+                <a href="javascript:void(0)" class="js-tag color2">Layout</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1110,11 +1131,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+                <a href="javascript:void(0)" class="js-tag color5">Android studio</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android studio</a>
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1123,6 +1144,54 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">类集框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">泛型机制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">equals</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">复写</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">集合</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">映射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">eclipse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1142,71 +1211,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">equals</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">复写</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">类集框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">泛型机制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">集合</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">映射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">intent</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">权限</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">socket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1227,6 +1236,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">同步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">socket</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
               </li>
             
             <div class="clearfix"></div>
