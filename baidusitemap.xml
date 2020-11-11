@@ -4,6 +4,40 @@
 
     
   <url>
+    <loc>http://www.timewl.top/2020/11/09/20201109adb-connect/</loc>
+    <lastmod>2020-11-11T12:45:38.020Z</lastmod>
+    <data>
+        <display>
+        <title>Android adb connect积极拒绝</title>
+        <pubTime>2020-11-09T05:41:14.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.timewl.top/2020/11/09/20201109android-otg/</loc>
+    <lastmod>2020-11-11T12:45:12.615Z</lastmod>
+    <data>
+        <display>
+        <title>Android的OTG存储</title>
+        <pubTime>2020-11-09T12:43:11.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.timewl.top/2020/11/08/20201101Flutter/</loc>
     <lastmod>2020-11-08T13:31:30.530Z</lastmod>
     <data>
@@ -11,9 +45,9 @@
         <title>初识Flutter</title>
         <pubTime>2020-11-08T13:29:25.000Z</pubTime>
         
-        <tag>Flutter</tag>
-         
         <tag>Android</tag>
+         
+        <tag>Flutter</tag>
          
          
            
@@ -563,9 +597,9 @@
         
         <tag>Android</tag>
          
-        <tag>JAVA</tag>
-         
         <tag>Android studio</tag>
+         
+        <tag>JAVA</tag>
          
          
            

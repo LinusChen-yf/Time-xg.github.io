@@ -153,6 +153,172 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-20201109android-otg" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/09/20201109android-otg/">Android的OTG存储</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/09/20201109android-otg/" class="archive-article-date">
+  	<time datetime="2020-11-09T12:43:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于Android要实现读取OTG的通信数据的收发数据比较复杂，我就打算采用别人封装好的第三方库libaums来实现OTG的读写。<br>libaums： <a href="https://github.com/magnusja/libaums" target="_blank" rel="noopener">https://github.com/magnusja/libaums</a></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="外置设备的插拔广播"><a href="#外置设备的插拔广播" class="headerlink" title="外置设备的插拔广播"></a>外置设备的插拔广播</h3><p>首先我们要接受外置设备插入拔出的广播来判断外置设备的插入。</p>
+<p>我们先创建一个广播接收的类，复写其onReceive的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">    String action = intent.getAction();</span><br><span class="line">    // usb插入</span><br><span class="line">    if (action.equals(UsbManager.ACTION_USB_DEVICE_ATTACHED)) &#123;</span><br><span class="line">        isConnected = true;</span><br><span class="line">        Toast.makeText(context, &quot;onReceive: USB设备插入&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">        // 得到 USB的设备</span><br><span class="line">        UsbDevice device_add = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);</span><br><span class="line">        if (device_add != null)&#123;</span><br><span class="line">            // 如果usb设备不为空  通过EventBus 发送一个自定义的Event</span><br><span class="line">            EventBus.getDefault().post(new UsbStatusChangeEvent(isConnected));</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            Toast.makeText(context, &quot;device is null&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // usb拔出</span><br><span class="line">    else if (action.equals(UsbManager.ACTION_USB_DEVICE_DETACHED))&#123;</span><br><span class="line">        isConnected = false;</span><br><span class="line">        Toast.makeText(context, &quot;onReceive: USB设备拔出&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">        EventBus.getDefault().post(new UsbStatusChangeEvent(isConnected));</span><br><span class="line">    &#125;</span><br><span class="line">    // 权限申请</span><br><span class="line">    else if (action.equals(OTGActivity.ACTION_USB_PERMISSION))&#123;</span><br><span class="line">        UsbDevice usbDevice = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);</span><br><span class="line">        //允许权限申请</span><br><span class="line">        if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)) &#123;</span><br><span class="line">            if (usbDevice != null) &#123;</span><br><span class="line">                Toast.makeText(context, &quot;权限已获取&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                EventBus.getDefault().post(new UsbStatusChangeEvent(true, usbDevice));</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                Toast.makeText(context, &quot;没有插入U盘&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            Toast.makeText(context, &quot;未获取到U盘权限&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    else &#123;</span><br><span class="line">        Log.d(&quot;USBReceiver&quot;, &quot;action&quot; + action);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/11/09/20201109android-otg/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/09/20201109android-otg/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20201109adb-connect" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/09/20201109adb-connect/">Android adb connect积极拒绝</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/09/20201109adb-connect/" class="archive-article-date">
+  	<time datetime="2020-11-09T05:41:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>今天因为工作原因，手机的type-c接口被占用。导致无法进行debug调试。于是打算用adb connect进行连接。</p>
+<p>可是连接一直出现由于目标计算机积极拒绝，无法连接。 (10061)。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>参考连接： <a href="https://www.cnblogs.com/wisdomzhang/p/11669675.html" target="_blank" rel="noopener">https://www.cnblogs.com/wisdomzhang/p/11669675.html</a></p>
+<ol>
+<li>先将手机连接至电脑的usb</li>
+<li>打开终端输入 adb devices 查看设备是否连接上</li>
+<li>输入 adb root 获取root权限</li>
+<li>输入adb shell 打开手机控制台</li>
+</ol>
+<p>在手机控制台中输入<code>setprop service.adb.tcp.port 5555</code>开启网络调试，随后exit退出。</p>
+<ol>
+<li>开启adb调式端口 adb tcpip 5555</li>
+<li>连接你的设备 adb connect ip:5555（路由器内网ip）</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/09/20201109adb-connect/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20201101Flutter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -189,11 +355,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Flutter</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Flutter</a>
         		</li>
       		
 		</ul>
@@ -815,160 +981,6 @@
 
 
   
-    <article id="post-numpy0201" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/01/numpy0201/">python之numpy</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/01/numpy0201/" class="archive-article-date">
-  	<time datetime="2020-02-01T07:56:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="numpy介绍"><a href="#numpy介绍" class="headerlink" title="numpy介绍"></a>numpy介绍</h1><p>Numpy（Numerical Python）是一个开源的Python科学计算库，用于快速处理任意维度的数组。</p>
-<p>Numpy支持常见的数组和矩阵操作。对于同样的数值计算任务，使用Numpy比直接使用Python要简洁的多。</p>
-<p>Numpy使用ndarray对象来处理多维数组，该对象是一个快速而灵活的大数据容器。<br>
-        
-          <a class="article-more-a" href="/2020/02/01/numpy0201/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/01/numpy0201/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-matplotlib0122" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/22/matplotlib0122/">python之matplotlib</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/22/matplotlib0122/" class="archive-article-date">
-  	<time datetime="2020-01-22T07:31:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="matplotlib介绍"><a href="#matplotlib介绍" class="headerlink" title="matplotlib介绍"></a>matplotlib介绍</h1><p>matplotlib主要用于图表绘制的一个库，以渐进、交互式方式实现数据可视化。    可以更加直观的分析数据\<br>
-        
-          <a class="article-more-a" href="/2020/01/22/matplotlib0122/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/22/matplotlib0122/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1066,23 +1078,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Flutter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">控件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Layout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1091,6 +1091,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Flutter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">控件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Android studio</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1103,14 +1119,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">递推</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Android studio</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1130,15 +1138,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">eclipse</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1166,11 +1170,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">intent</a>
+                <a href="javascript:void(0)" class="js-tag color3">集合</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+                <a href="javascript:void(0)" class="js-tag color3">eclipse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1178,7 +1190,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">权限</a>
+                <a href="javascript:void(0)" class="js-tag color2">intent</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1186,7 +1198,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">集合</a>
+                <a href="javascript:void(0)" class="js-tag color3">权限</a>
               </li>
              
               <li class="article-tag-list-item">
